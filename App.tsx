@@ -1,120 +1,88 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
-import React, {type PropsWithChildren} from 'react';
+import React, {useEffect} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {persistor, store} from './src/store';
+import {Provider} from 'react-redux';
+import RootNavigation from './src/container';
+// import 'react-native-gesture-handler';
+// import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {PersistGate} from 'redux-persist/integration/react';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {navigationRef} from 'utils/navigation';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import {AlertInitializer} from './src/utils/toast';
+import RootLoader from './src/components/RootLoader';
+import codePush from 'react-native-code-push';
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
+import dynamicLinks from '@react-native-firebase/dynamic-links';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+  NotificationListener,
+  requestUserPermission,
+} from './src/utils/pushNotificationHelper';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import ForegroundHandler from './src/utils/ForegroundPushNotification';
+let codePushOptions = {checkFrequency: codePush.CheckFrequency.ON_APP_START};
+import linking from 'utils/linking';
 
-const Section: React.FC<
-  PropsWithChildren<{
-    title: string;
-  }>
-> = ({children, title}) => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+GoogleSignin.configure({
+  webClientId:
+    '459641506881-0no5sq15ru8b7c3cr4c31lc8t4v51upa.apps.googleusercontent.com',
+});
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  useEffect(() => {
+    // enableLatestRenderer();
+    main();
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    dynamicLinks()
+      .getInitialLink()
+      .then(link => {
+        handleDynamicLink(link);
+      });
+    const linkingListener = dynamicLinks().onLink(handleDynamicLink);
+    return () => linkingListener();
+  }, []);
+
+  const handleDynamicLink = link => {
+    if (!!link?.url) {
+      let getId = link.url?.split('=').pop();
+      navigationRef.navigate('OtherStack', {
+        screen: 'Stream',
+        params: {
+          stream: {streamId: getId},
+        },
+      });
+    }
+  };
+
+  const main = async () => {
+    codePush.sync({
+      updateDialog: true,
+      installMode: codePush.InstallMode.IMMEDIATE,
+    });
+
+    requestUserPermission();
+    NotificationListener();
+    ForegroundHandler();
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <SafeAreaProvider>
+      {/* <GestureHandlerRootView style={{flex: 1}}> */}
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <RootLoader />
+            <BottomSheetModalProvider>
+              <NavigationContainer ref={navigationRef} linking={linking}>
+                <RootNavigation />
+              </NavigationContainer>
+            </BottomSheetModalProvider>
+            <AlertInitializer />
+          </PersistGate>
+        </Provider>
+      {/* </GestureHandlerRootView> */}
+    </SafeAreaProvider>
   );
 };
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+// export default codePush(codePushOptions)(App);
+export default codePush(codePushOptions)(App);
