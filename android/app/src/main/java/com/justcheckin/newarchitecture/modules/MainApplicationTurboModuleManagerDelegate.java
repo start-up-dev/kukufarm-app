@@ -1,4 +1,4 @@
-package com.justcheckin.newarchitecture.modules;
+package co.justcheckingin.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

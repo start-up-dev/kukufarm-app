@@ -1,4 +1,4 @@
-package com.justcheckin.newarchitecture;
+package co.justcheckingin.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.justcheckin.BuildConfig;
-import com.justcheckin.newarchitecture.components.MainComponentsRegistry;
-import com.justcheckin.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import co.justcheckingin.BuildConfig;
+import co.justcheckingin.newarchitecture.components.MainComponentsRegistry;
+import co.justcheckingin.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

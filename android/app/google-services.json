@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "708934845319",
+    "firebase_url": "https://just-checking-in-bitrupt.firebaseio.com",
+    "project_id": "just-checking-in-bitrupt",
+    "storage_bucket": "just-checking-in-bitrupt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:708934845319:android:742b368afce63da0908922",
+        "android_client_info": {
+          "package_name": "co.justcheckingin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "708934845319-ogd1bldg998goi85mnhftu9tq76dndsn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.justcheckingin",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "708934845319-vtgek17va610559c8srt8jaopl8igc0k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgjQBHX-lM_VfFR8Cssl8OH7b7M8bVa-o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "708934845319-vtgek17va610559c8srt8jaopl8igc0k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "708934845319-f7hi168fe2dlgvg2gi537crrsk1tt5j7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "co.justcheckingin.app",
+                "app_store_id": "1507778735"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
