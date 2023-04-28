@@ -13,7 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import color from "../const/color";
 import Space from "../components/common/Space";
 import AppGuide from "../components/common/AppGuide";
-import Header from "../components/coops/Header";
+import Header from "../components/coops/CoopsHeader";
 
 //Images
 const archived = require("../../assets/images/archived.png");
@@ -24,7 +24,7 @@ const { width, height } = Dimensions.get("window");
 const CoopScreen = () => {
   const navigation = useNavigation();
 
-  navigation.setOptions({ header: () => <Header /> });
+  //navigation.setOptions({ header: () => <Header /> });
 
   return (
     <SafeAreaView style={{ backgroundColor: color.background }}>

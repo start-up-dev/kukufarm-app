@@ -6,7 +6,9 @@ import RecordScreen from "../screens/RecordScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import { Image } from "react-native";
 import color from "../const/color";
-import Header from "../components/coops/Header";
+import Header from "../components/common/Header";
+import CoopsHeader from "../components/coops/CoopsHeader";
+import RecordStack from "./RecordStack";
 
 //Component
 
@@ -57,9 +59,13 @@ const BottomTab = () => {
       <Tab.Screen
         name="Coops"
         component={CoopScreen}
-        // options={{ header: () => <Header /> }}
+        options={{ header: () => <CoopsHeader /> }}
       />
-      <Tab.Screen name="Records" component={RecordScreen} />
+      <Tab.Screen
+        name="Records"
+        component={RecordStack}
+        options={{ headerShown: false }}
+      />
       <Tab.Screen name="Settings" component={SettingsScreen} />
     </Tab.Navigator>
   );

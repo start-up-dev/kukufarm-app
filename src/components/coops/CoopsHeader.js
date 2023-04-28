@@ -5,7 +5,7 @@ import color from "../../const/color";
 const dropdown = require("../../../assets/images/dropdown.png");
 const profileImg1 = require("../../../assets/images/profileImg1.jpg");
 
-const Header = () => {
+const CoopsHeader = () => {
   return (
     <SafeAreaView
       style={{
@@ -106,4 +106,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default CoopsHeader;

@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  StatusBar,
   View,
 } from "react-native";
 import Space from "../components/common/Space";
