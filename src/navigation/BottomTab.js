@@ -1,14 +1,16 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import CoopScreen from "../screens/CoopScreen";
-import RecordScreen from "../screens/RecordScreen";
-import SettingsScreen from "../screens/SettingsScreen";
+import RecordScreen from "../screens/records/RecordScreen";
+import SettingsScreen from "../screens/settings/SettingsScreen";
 import { Image } from "react-native";
 import color from "../const/color";
 import Header from "../components/common/Header";
 import CoopsHeader from "../components/coops/CoopsHeader";
 import RecordStack from "./RecordStack";
+import CoopScreen from "../screens/coops/CoopScreen";
+import CoopStack from "./CoopStack";
+import SettingStack from "./SettingStack";
 
 //Component
 
@@ -58,15 +60,19 @@ const BottomTab = () => {
     >
       <Tab.Screen
         name="Coops"
-        component={CoopScreen}
-        options={{ header: () => <CoopsHeader /> }}
+        component={CoopStack}
+        options={{ headerShown: false }}
       />
       <Tab.Screen
         name="Records"
         component={RecordStack}
         options={{ headerShown: false }}
       />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen
+        name="Settings"
+        component={SettingStack}
+        options={{ headerShown: false }}
+      />
     </Tab.Navigator>
   );
 };

@@ -7,21 +7,24 @@ import {
   ScrollView,
   Dimensions,
   StatusBar,
+  TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
-import color from "../const/color";
-import Space from "../components/common/Space";
-import AppGuide from "../components/common/AppGuide";
-import Header from "../components/coops/CoopsHeader";
+import color from "../../const/color";
+import Space from "../../components/common/Space";
+import AppGuide from "../../components/common/AppGuide";
+import SingleItem from "../../components/coops/SingleItem";
 
 //Images
-const archived = require("../../assets/images/archived.png");
-const plus = require("../../assets/images/plus.png");
+const archived = require("../../../assets/images/archived.png");
+const plus = require("../../../assets/images/plus.png");
 
 const { width, height } = Dimensions.get("window");
 
 const CoopScreen = () => {
+  const [appGuideHide, setAppguideHide] = useState(true);
   const navigation = useNavigation();
 
   //navigation.setOptions({ header: () => <Header /> });
@@ -33,10 +36,13 @@ const CoopScreen = () => {
         <Space height={28} />
         <Text style={styles.title}>Coops</Text>
         <Space height={32} />
-        <View style={styles.archivedView}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Archive")}
+          style={styles.archivedView}
+        >
           <Image source={archived} style={styles.archivedIcon} />
           <Text style={styles.archivedText}>Archived flocks</Text>
-        </View>
+        </TouchableOpacity>
         <Space height={20} />
         <View style={styles.newCoopView}>
           <Image
@@ -46,12 +52,15 @@ const CoopScreen = () => {
           <Text style={styles.newCoopText}>New Coop</Text>
         </View>
         <Space height={10} />
-        <View style={styles.coopView}>
-          <Text style={styles.coopTitle}>Coop 1</Text>
-          <Text style={styles.flockCount}>0 Flocks</Text>
-        </View>
+
+        <SingleItem
+          title="Coop 1"
+          subtitle="1 flock 1500 birds"
+          link="Single Coop"
+        />
+
         <Space height={200} />
-        <AppGuide />
+        {appGuideHide && <AppGuide onPress={() => setAppguideHide(false)} />}
       </ScrollView>
     </SafeAreaView>
   );

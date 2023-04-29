@@ -1,9 +1,9 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import color from "../../const/color";
 
 const close = require("../../../assets/images/close.png");
 
-const AppGuide = () => {
+const AppGuide = ({ onPress = () => {} }) => {
   return (
     <View
       style={{
@@ -12,15 +12,17 @@ const AppGuide = () => {
         borderRadius: 7,
       }}
     >
-      <Image
-        source={close}
-        style={{
-          width: 9,
-          height: 9,
-          resizeMode: "contain",
-          alignSelf: "flex-end",
-        }}
-      />
+      <TouchableOpacity onPress={onPress}>
+        <Image
+          source={close}
+          style={{
+            width: 9,
+            height: 9,
+            resizeMode: "contain",
+            alignSelf: "flex-end",
+          }}
+        />
+      </TouchableOpacity>
       <Text
         style={{
           fontFamily: "Sora-Regular",

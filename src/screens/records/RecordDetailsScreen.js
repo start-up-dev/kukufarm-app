@@ -5,10 +5,10 @@ import {
   StyleSheet,
   Text,
 } from "react-native";
-import TabBar from "../components/records/TabBar";
-import RecordBox from "../components/records/RecordBox";
-import RecordBoxHeader from "../components/records/RecordBoxHeader";
-import Space from "../components/common/Space";
+import TabBar from "../../components/records/TabBar";
+import RecordBox from "../../components/records/RecordBox";
+import RecordBoxHeader from "../../components/records/RecordBoxHeader";
+import Space from "../../components/common/Space";
 
 const { w, h } = Dimensions.get("window");
 

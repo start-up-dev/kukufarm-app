@@ -1,11 +1,17 @@
-import { Image, SafeAreaView } from "react-native";
+import { Image, SafeAreaView, TouchableOpacity } from "react-native";
 import { View, Text } from "react-native";
 import color from "../../const/color";
+import { useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+
+import DropdownFarm from "./DropdownFarm";
 
 const dropdown = require("../../../assets/images/dropdown.png");
 const profileImg1 = require("../../../assets/images/profileImg1.jpg");
 
 const CoopsHeader = () => {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView
       style={{
@@ -24,35 +30,11 @@ const CoopsHeader = () => {
           alignItems: "center",
         }}
       >
-        <View style={{ flexDirection: "row" }}>
-          <View>
-            <Text
-              style={{
-                fontFamily: "Sora-Regular",
-                fontSize: 16,
-                lineHeight: 24,
-                color: color.TextLink,
-              }}
-            >
-              John's
-            </Text>
-            <Text
-              style={{
-                fontFamily: "Sora-SemiBold",
-                fontSize: 10,
-                lineHeight: 12,
-                color: color.TextLink,
-              }}
-            >
-              FARM
-            </Text>
-          </View>
-          <Image
-            source={dropdown}
-            style={{ width: 12, resizeMode: "contain", marginLeft: 12 }}
-          />
-        </View>
-        <View style={{ flexDirection: "row" }}>
+        <DropdownFarm />
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Farm User")}
+          style={{ flexDirection: "row" }}
+        >
           <Image
             source={profileImg1}
             style={{
@@ -100,7 +82,7 @@ const CoopsHeader = () => {
               +2
             </Text>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

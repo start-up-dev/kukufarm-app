@@ -6,9 +6,9 @@ import {
   StyleSheet,
   Dimensions,
 } from "react-native";
-import color from "../const/color";
-import CoopsTitle from "../components/records/CoopsTitle";
-import RecordItem from "../components/records/RecordItem";
+import color from "../../const/color";
+import CoopsTitle from "../../components/records/CoopsTitle";
+import RecordItem from "../../components/records/RecordItem";
 
 const { width, height } = Dimensions.get("window");
 

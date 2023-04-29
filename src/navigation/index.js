@@ -1,7 +1,11 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import BottomTab from "./BottomTav";
+import BottomTab from "./BottomTab";
 import LogInScreen from "../screens/LogInScreen";
+import Header from "../components/common/Header";
+import ProfileScreen from "../screens/settings/ProfileScreen";
+import EditProfileScreen from "../screens/settings/EditProfileScreen";
+import AddFlockScreen from "../screens/coops/AddFlockScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +27,27 @@ const MainStack = () => {
         component={LogInScreen}
         options={{
           headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          header: () => <Header title="Profile" back edit />,
+        }}
+      />
+      <Stack.Screen
+        name="Edit Profile"
+        component={EditProfileScreen}
+        options={{
+          header: () => <Header title="Edit Profile" cancel save />,
+        }}
+      />
+      <Stack.Screen
+        name="Add Flock"
+        component={AddFlockScreen}
+        options={{
+          header: () => <Header title="New Flock" cancel save />,
         }}
       />
     </Stack.Navigator>
