@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import color from "../../const/color";
 import Space from "../../components/common/Space";
+import Button from "../../components/common/Button";
 
 const profileImg = require("../../../assets/images/profileImg1.jpg");
 
@@ -22,12 +23,10 @@ const ProfileScreen = () => {
         <Space height={8} />
         <Text style={styles.email}>john.appleseed@apple.com</Text>
         <Space height={"40%"} />
-        <TouchableOpacity style={styles.logoutView}>
-          <Text style={styles.logoutText}>Logout</Text>
-        </TouchableOpacity>
+        <Button title="Logout" />
         <Space height={30} />
         <TouchableOpacity style={styles.deleteView}>
-          <Text style={styles.logoutText}>Delete</Text>
+          <Text style={styles.logoutText}>Delete Account</Text>
         </TouchableOpacity>
         <Space height={300} />
       </View>

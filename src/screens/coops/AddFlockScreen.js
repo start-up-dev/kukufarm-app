@@ -8,9 +8,9 @@ const { width, height } = Dimensions.get("window");
 
 const AddFlockScreen = () => {
   return (
-    <SafeAreaView style={{ backgroundColor: color.background }}>
+    <SafeAreaView style={{ backgroundColor: color.background, flex: 1 }}>
       <StatusBar />
-      <View style={{ paddingHorizontal: 20, height: height - 200 }}>
+      <View style={{ paddingHorizontal: 20 }}>
         <Space height={10} />
         <Input placeholder="Breed Name" />
         <Input label="Type" value={"0"} />
@@ -31,6 +31,7 @@ const AddFlockScreen = () => {
           Total cost will be logged as an expense
         </Text>
       </View>
+
       <BottomSheet title1="New Flock" title2="Expense KSH 0.00" />
     </SafeAreaView>
   );

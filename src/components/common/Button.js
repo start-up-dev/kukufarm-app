@@ -5,19 +5,33 @@ import color from "../../const/color";
 
 const plus = require("../../../assets/images/plus.png");
 
-const Button = ({ title, link }) => {
+const Button = ({ title, onPress = () => {}, fill, icon, mini }) => {
   const navigation = useNavigation();
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate(link)}
-      style={styles.btnView}
+      onPress={onPress}
+      style={[
+        styles.btnView,
+        fill && { backgroundColor: color.TextLink },
+        mini && { width: 165 },
+      ]}
     >
-      <Image
-        source={plus}
-        style={{ width: 10, height: 10, resizeMode: "contain" }}
-      />
-      <Text style={styles.btnText}>{title}</Text>
+      {icon && (
+        <Image
+          source={plus}
+          style={{ width: 10, height: 10, resizeMode: "contain" }}
+        />
+      )}
+
+      <Text
+        style={[
+          styles.btnText,
+          fill && { color: color.background, fontFamily: "Sora-SemiBold" },
+        ]}
+      >
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };

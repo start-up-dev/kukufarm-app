@@ -26,14 +26,14 @@ const CoopStack = () => {
         name="Farm User"
         component={FarmUser}
         options={{
-          header: () => <Header title="John's Farm" back />,
+          header: () => <Header title="John's Farm" back empty />,
         }}
       />
       <Stack.Screen
         name="Archive"
         component={ArchivedScreen}
         options={{
-          header: () => <Header title="Archived flocks" back />,
+          header: () => <Header title="Archived flocks" back empty />,
         }}
       />
       <Stack.Screen

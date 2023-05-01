@@ -6,6 +6,7 @@ import Header from "../components/common/Header";
 import ProfileScreen from "../screens/settings/ProfileScreen";
 import EditProfileScreen from "../screens/settings/EditProfileScreen";
 import AddFlockScreen from "../screens/coops/AddFlockScreen";
+import AddPeopleSreen from "../screens/coops/AddPeopleScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -48,6 +49,13 @@ const MainStack = () => {
         component={AddFlockScreen}
         options={{
           header: () => <Header title="New Flock" cancel save />,
+        }}
+      />
+      <Stack.Screen
+        name="Add People"
+        component={AddPeopleSreen}
+        options={{
+          header: () => <Header title="Add People" cancel save />,
         }}
       />
     </Stack.Navigator>

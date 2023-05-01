@@ -4,7 +4,7 @@ import color from "../../const/color";
 
 const dropdown = require("../../../assets/images/dropdown.png");
 
-const DropdownFarm = () => {
+const DropdownFarm = ({ myFarm }) => {
   const [visible, setVisible] = useState(false);
   const toggleDropdown = () => {
     setVisible(!visible);
@@ -59,38 +59,67 @@ const DropdownFarm = () => {
   };
 
   return (
-    <TouchableOpacity
-      style={{ flexDirection: "row", zIndex: 1 }}
-      onPress={toggleDropdown}
-    >
-      <View>
-        <Text
-          style={{
-            fontFamily: "Sora-Regular",
-            fontSize: 16,
-            lineHeight: 24,
-            color: color.TextLink,
-          }}
+    <>
+      {myFarm ? (
+        <TouchableOpacity
+          style={{ flexDirection: "row", zIndex: 1 }}
+          onPress={toggleDropdown}
         >
-          John's
-        </Text>
-        <Text
-          style={{
-            fontFamily: "Sora-SemiBold",
-            fontSize: 10,
-            lineHeight: 12,
-            color: color.TextLink,
-          }}
-        >
-          FARM
-        </Text>
-      </View>
-      <Image
-        source={dropdown}
-        style={{ width: 12, resizeMode: "contain", marginLeft: 12 }}
-      />
-      {renderDropdown()}
-    </TouchableOpacity>
+          <View>
+            <Text
+              style={{
+                fontFamily: "Sora-Regular",
+                fontSize: 16,
+                lineHeight: 24,
+                color: color.TextLink,
+              }}
+            >
+              John's
+            </Text>
+            <Text
+              style={{
+                fontFamily: "Sora-SemiBold",
+                fontSize: 10,
+                lineHeight: 12,
+                color: color.TextLink,
+              }}
+            >
+              FARM
+            </Text>
+          </View>
+          <Image
+            source={dropdown}
+            style={{ width: 12, resizeMode: "contain", marginLeft: 12 }}
+          />
+          {renderDropdown()}
+        </TouchableOpacity>
+      ) : (
+        <View>
+          <Text
+            style={{
+              fontFamily: "Sora-Regular",
+              fontSize: 16,
+              lineHeight: 24,
+              letterSpacing: 0.5,
+              color: color.TextPrimary,
+            }}
+          >
+            John's
+          </Text>
+          <Text
+            style={{
+              fontFamily: "Sora-SemiBold",
+              fontSize: 10,
+              lineHeight: 12,
+              letterSpacing: 1.5,
+              color: color.TextPrimary,
+            }}
+          >
+            FARM
+          </Text>
+        </View>
+      )}
+    </>
   );
 };
 
