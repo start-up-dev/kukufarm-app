@@ -27,9 +27,17 @@ const SettingsScreen = () => {
           profile
           link="Profile"
         />
-        <SingleMenu title="Currency" unit="KSH" />
-        <SingleMenu title="Number of eggs in a tray" unit="30" />
-        <SingleMenu title="Upgrade" subTitle="Current plan: Small farm" />
+        <SingleMenu title="Currency" unit="KSH" link="Currency" />
+        <SingleMenu
+          title="Number of eggs in a tray"
+          unit="30"
+          link="Eggs Tray"
+        />
+        <SingleMenu
+          title="Upgrade"
+          subTitle="Current plan: Small farm"
+          link="Upgrade"
+        />
         <SingleMenu title="Restore purchase" />
         <SingleMenu title="FAQs" />
         <SingleMenu title="About" />

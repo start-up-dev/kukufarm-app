@@ -1,5 +1,6 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import color from "../../const/color";
+import Icon from "./Icon";
 
 const close = require("../../../assets/images/close.png");
 
@@ -12,16 +13,8 @@ const AppGuide = ({ onPress = () => {} }) => {
         borderRadius: 7,
       }}
     >
-      <TouchableOpacity onPress={onPress}>
-        <Image
-          source={close}
-          style={{
-            width: 9,
-            height: 9,
-            resizeMode: "contain",
-            alignSelf: "flex-end",
-          }}
-        />
+      <TouchableOpacity onPress={onPress} style={{ alignItems: "flex-end" }}>
+        <Icon icon={close} m />
       </TouchableOpacity>
       <Text
         style={{

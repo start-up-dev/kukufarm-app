@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import color from "../../const/color";
 import Space from "../common/Space";
 
-const TabBar = () => {
+const TabBar = ({ tabNum, setTabNum }) => {
   return (
     <View
       style={{
@@ -18,44 +18,57 @@ const TabBar = () => {
           borderWidth: 1,
         }}
       >
-        <View style={{ alignItems: "center" }}>
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => setTabNum(1)}
+        >
           <Text style={[styles.title, { color: color.TextLink }]}>Birds</Text>
-          <View
-            style={{
-              backgroundColor: color.TextLink,
-              borderRadius: 3,
-              width: 32,
-              height: 5,
-              marginTop: 4,
-            }}
-          ></View>
-        </View>
-        <Text style={styles.title}>Finances</Text>
-        <Text style={styles.title}>Eggs</Text>
-      </View>
-      <View
-        style={{
-          paddingVertical: 10,
-          justifyContent: "space-evenly",
-          flexDirection: "row",
-        }}
-      >
-        <View>
-          <Text style={styles.title2}>To Date</Text>
-        </View>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <View
-            style={{
-              width: 16,
-              height: 12,
-              backgroundColor: color.foundation,
-              borderRadius: 7,
-              marginRight: 4,
-            }}
-          ></View>
-          <Text style={styles.title2}>Live Stock</Text>
-        </View>
-        <Text style={styles.title2}>Mortality rate (%)</Text>
+          {tabNum === 1 && (
+            <View
+              style={{
+                backgroundColor: color.TextLink,
+                borderRadius: 3,
+                width: 32,
+                height: 5,
+                marginTop: 4,
+              }}
+            ></View>
+          )}
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => setTabNum(2)}
+        >
+          <Text style={styles.title}>Finances</Text>
+          {tabNum === 2 && (
+            <View
+              style={{
+                backgroundColor: color.TextLink,
+                borderRadius: 3,
+                width: 32,
+                height: 5,
+                marginTop: 4,
+              }}
+            ></View>
+          )}
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{ alignItems: "center" }}
+          onPress={() => setTabNum(3)}
+        >
+          <Text style={styles.title}>Eggs</Text>
+          {tabNum === 3 && (
+            <View
+              style={{
+                backgroundColor: color.TextLink,
+                borderRadius: 3,
+                width: 32,
+                height: 5,
+                marginTop: 4,
+              }}
+            ></View>
+          )}
+        </TouchableOpacity>
       </View>
     </View>
   );

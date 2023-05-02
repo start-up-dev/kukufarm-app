@@ -23,6 +23,7 @@ const DropdownFarm = ({ myFarm }) => {
             shadowColor: "rgba(28, 39, 49, 0.08)",
             shadowOpacity: 1,
             shadowOffset: { width: 1, height: 1 },
+            zIndex: 100,
           }}
         >
           <TouchableOpacity onPress={toggleDropdown}>

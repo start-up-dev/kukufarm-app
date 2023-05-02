@@ -22,8 +22,6 @@ export default function App() {
           "Sora-SemiBold": require("./assets/fonts/Sora-SemiBold.ttf"),
           "Sora-Bold": require("./assets/fonts/Sora-Bold.ttf"),
         });
-
-        console.log("1");
       } catch (e) {
         console.warn(e);
       } finally {
@@ -34,12 +32,9 @@ export default function App() {
 
     prepare();
   }, []);
-  console.log(appIsReady);
 
   const onLayoutRootView = useCallback(async () => {
     if (appIsReady) {
-      console.log("2");
-
       // This tells the splash screen to hide immediately! If we call this after
       // `setAppIsReady`, then we may see a blank screen while the app is
       // loading its initial state and rendering its first pixels. So instead,

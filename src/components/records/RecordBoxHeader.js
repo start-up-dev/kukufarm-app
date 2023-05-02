@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const dropdown = require("../../../assets/images/dropdown.png");
 
-const RecordBoxHeader = () => {
+const RecordBoxHeader = ({ tabNum }) => {
   const [details, setDetails] = useState(false);
   return (
     <View
@@ -15,6 +15,7 @@ const RecordBoxHeader = () => {
         marginBottom: 0,
         backgroundColor: color.background,
         borderRadius: 3,
+        zIndex: 1,
       }}
     >
       <TouchableOpacity
@@ -66,7 +67,7 @@ const RecordBoxHeader = () => {
           ></View>
           <View
             style={{
-              width: 0,
+              width: tabNum === 2 ? 50 : 0,
               height: 12,
               backgroundColor: "#8C8C8C",
               borderRadius: 7,

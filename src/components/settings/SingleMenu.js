@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import color from "../../const/color";
 
-const right = require("../../../assets/images/right.png");
+const rightIcon = require("../../../assets/images/right.png");
 const profileImg = require("../../../assets/images/profileImg1.jpg");
 
 const SingleMenu = ({ title, subTitle, unit, profile, right, leave, link }) => {
@@ -35,7 +35,9 @@ const SingleMenu = ({ title, subTitle, unit, profile, right, leave, link }) => {
         alignItems: "center",
         marginVertical: 12,
       }}
-      onPress={() => navigation.navigate(link)}
+      onPress={
+        link ? () => navigation.navigate(link) : console.log("No Link Found")
+      }
     >
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         {profile && (
@@ -91,7 +93,7 @@ const SingleMenu = ({ title, subTitle, unit, profile, right, leave, link }) => {
         </Text>
         {!right && (
           <Image
-            source={right}
+            source={rightIcon}
             style={{ width: 5, height: 8, resizeMode: "contain" }}
           />
         )}

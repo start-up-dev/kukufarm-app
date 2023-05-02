@@ -1,9 +1,16 @@
 import { TouchableOpacity, StyleSheet, Image, Text } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
 import color from "../../const/color";
 
-const InlineButton = ({ title, icon }) => {
+const InlineButton = ({ title, icon, link }) => {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity style={styles.btnView}>
+    <TouchableOpacity
+      style={styles.btnView}
+      onPress={() => navigation.navigate(link)}
+    >
       <Image
         source={icon}
         style={{ width: 16, height: 16, resizeMode: "contain" }}

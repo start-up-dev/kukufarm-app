@@ -21,7 +21,7 @@ const FlockDetailsScreen = () => {
         <Space height={10} />
         <InlineButton title="Add birds to flock" icon={plusCircle} />
         <InlineButton title="Remove birds from flock" icon={minusCircle} />
-        <InlineButton title="Split flock by gender" icon={split} />
+        <InlineButton title="Split flock by gender" icon={split} link="Split" />
       </ScrollView>
     </SafeAreaView>
   );
