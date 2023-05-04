@@ -19,8 +19,16 @@ const FlockDetailsScreen = () => {
         <DetailProps title="Age" value="3 Weeks" />
         <DetailProps title="Birds" value="500" />
         <Space height={10} />
-        <InlineButton title="Add birds to flock" icon={plusCircle} />
-        <InlineButton title="Remove birds from flock" icon={minusCircle} />
+        <InlineButton
+          title="Add birds to flock"
+          icon={plusCircle}
+          link="Add Bird"
+        />
+        <InlineButton
+          title="Remove birds from flock"
+          icon={minusCircle}
+          link="Remove Bird"
+        />
         <InlineButton title="Split flock by gender" icon={split} link="Split" />
       </ScrollView>
     </SafeAreaView>

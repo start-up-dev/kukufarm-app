@@ -7,6 +7,8 @@ import {
   StatusBar,
   View,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
 import Space from "../components/common/Space";
 import color from "../const/color";
 
@@ -15,6 +17,8 @@ const google = require("../../assets/images/google.png");
 const apple = require("../../assets/images/apple.png");
 
 const LogInScreen = () => {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
@@ -22,12 +26,18 @@ const LogInScreen = () => {
       <Text style={styles.title}>Kuku farm</Text>
       <Text style={styles.subTitle}>Flock management and record keeping</Text>
       <Space height={"20%"} />
-      <TouchableOpacity style={styles.logInBox}>
+      <TouchableOpacity
+        style={styles.logInBox}
+        onPress={() => navigation.navigate("Bottom Tab")}
+      >
         <Image source={apple} style={styles.appleIcon} />
         <Text style={styles.logInText}>Continue with Apple</Text>
       </TouchableOpacity>
       <Space height={20} />
-      <TouchableOpacity style={styles.logInBox}>
+      <TouchableOpacity
+        style={styles.logInBox}
+        onPress={() => navigation.navigate("Bottom Tab")}
+      >
         <Image source={google} style={styles.googleIcon} />
         <Text style={styles.logInText}>Continue with Google</Text>
       </TouchableOpacity>

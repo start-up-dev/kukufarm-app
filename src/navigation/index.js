@@ -11,13 +11,16 @@ import UpgradeScreen from "../screens/settings/UpgradeScreen";
 import EggsTrayScreen from "../screens/settings/EggsTrayScreen";
 import CurrencyScreen from "../screens/settings/CurrencyScreen";
 import SplitScreen from "../screens/coops/SplitScreen";
+import AddBirdScreen from "../screens/coops/AddBirdsScreen";
+import RemoveBirdScreen from "../screens/coops/RemoveBirdScreen";
+import AddExpenseScreen from "../screens/records/AddExpenseScreen";
 
 const Stack = createNativeStackNavigator();
 
 const MainStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Bottom Tab"
+      initialRouteName="Log In"
       screenOptions={{ animation: "slide_from_left" }}
     >
       <Stack.Screen
@@ -88,6 +91,27 @@ const MainStack = () => {
         component={SplitScreen}
         options={{
           header: () => <Header title="Split flock" cancel save />,
+        }}
+      />
+      <Stack.Screen
+        name="Add Bird"
+        component={AddBirdScreen}
+        options={{
+          header: () => <Header title="Add birds" cancel save />,
+        }}
+      />
+      <Stack.Screen
+        name="Remove Bird"
+        component={RemoveBirdScreen}
+        options={{
+          header: () => <Header title="Remove birds" cancel save />,
+        }}
+      />
+      <Stack.Screen
+        name="Add Expense"
+        component={AddExpenseScreen}
+        options={{
+          header: () => <Header title="Add Expense" cancel save />,
         }}
       />
     </Stack.Navigator>

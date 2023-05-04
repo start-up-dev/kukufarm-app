@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import RBSheet from "react-native-raw-bottom-sheet";
+import { useNavigation } from "@react-navigation/native";
 
 import TabBar from "../../components/records/TabBar";
 import RecordBox from "../../components/records/RecordBox";
@@ -28,7 +29,14 @@ const RecordDetailsScreen = () => {
   const [tab, setTab] = useState(1);
   const [filter, setFilter] = useState(1);
 
+  const navigation = useNavigation();
+
   const refServiceBS = useRef();
+
+  const expenseHandle = () => {
+    refServiceBS.current.close();
+    navigation.navigate("Add Expense");
+  };
 
   return (
     <SafeAreaView>
@@ -107,16 +115,16 @@ const RecordDetailsScreen = () => {
             </TouchableOpacity>
           </View>
           <Space height={30} />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={expenseHandle}>
             <Text style={styles.menuText}>Expense</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={expenseHandle}>
             <Text style={styles.menuText}>Sale</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={expenseHandle}>
             <Text style={styles.menuText}>Eggs collected</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={expenseHandle}>
             <Text style={styles.menuText}>Birds removed</Text>
           </TouchableOpacity>
         </View>

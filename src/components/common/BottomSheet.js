@@ -7,11 +7,14 @@ const BottomSheet = ({ title1, title2 }) => {
     <View
       style={{
         backgroundColor: "#F5F5F5",
-        height: 200,
+        position: "absolute",
+        top: "90%",
+        width: "100%",
         borderRadius: 7,
         alignItems: "center",
+        justifyContent: "center",
         padding: 20,
-        marginTop: "90%",
+        paddingBottom: 50,
       }}
     >
       <Text
