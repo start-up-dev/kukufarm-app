@@ -39,7 +39,7 @@ const RecordDetailsScreen = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ flex: 1 }}>
       <TabBar tabNum={tab} setTabNum={setTab} />
       <TouchableOpacity
         style={styles.addView}
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   addView: {
     zIndex: 1,
     position: "absolute",
-    top: height - 260,
+    top: Platform.OS === "android" ? height - 180 : height - 260,
     left: width - 75,
     right: 0,
     width: 56,

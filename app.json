@@ -2,31 +2,29 @@
   "expo": {
     "name": "kukufarm-app",
     "slug": "kukufarm-app",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/192x.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.makereal.kukufarm"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/images/192x.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.makereal.kukufarm"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/images/192x.png"
     },
     "extra": {
       "eas": {
