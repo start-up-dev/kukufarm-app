@@ -2,7 +2,7 @@
   "expo": {
     "name": "kukufarm-app",
     "slug": "kukufarm-app",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/images/192x.png",
     "userInterfaceStyle": "automatic",
@@ -21,7 +21,8 @@
         "foregroundImage": "./assets/images/192x.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.makereal.kukufarm"
+      "package": "com.makereal.kukufarm",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/images/192x.png"
