@@ -59,7 +59,7 @@ const CoopScreen = () => {
           link="Single Coop"
         />
 
-        <Space height={200} />
+        <Space height={150} />
         {appGuideHide && <AppGuide onPress={() => setAppguideHide(false)} />}
       </ScrollView>
     </SafeAreaView>

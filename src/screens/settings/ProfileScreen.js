@@ -5,25 +5,52 @@ import {
   StyleSheet,
   View,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import color from "../../const/color";
 import Space from "../../components/common/Space";
 import Button from "../../components/common/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../../store/authSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 
 const profileImg = require("../../../assets/images/profileImg1.jpg");
 
 const ProfileScreen = () => {
+  const navigation = useNavigation();
+
+  const userData = useSelector((state) => state.auth.userData);
+  const dispatch = useDispatch();
+
+  const onLogOut = () => {
+    Alert.alert("Are You Sure", "", [
+      {
+        text: "Cancel",
+      },
+      {
+        text: "Logout",
+        onPress: async () => {
+          await AsyncStorage.removeItem("TOKEN");
+          dispatch(logOut());
+        },
+      },
+    ]);
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ paddingHorizontal: 20 }}>
         <Space height={30} />
-        <Image source={profileImg} style={styles.profileImg} />
+        <Image
+          source={userData?.picture ? { uri: userData?.picture } : profileImg}
+          style={styles.profileImg}
+        />
         <Space height={30} />
         <Text style={styles.name}>John Appleseed</Text>
         <Space height={8} />
-        <Text style={styles.email}>john.appleseed@apple.com</Text>
+        <Text style={styles.email}>{userData?.email}</Text>
         <Space height={"40%"} />
-        <Button title="Logout" />
+        <Button title="Logout" onPress={onLogOut} />
         <Space height={30} />
         <TouchableOpacity style={styles.deleteView}>
           <Text style={styles.logoutText}>Delete Account</Text>

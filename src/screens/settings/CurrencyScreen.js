@@ -10,11 +10,13 @@ import allCountry from "../../const/allCountry";
 import color from "../../const/color";
 import { useState } from "react";
 import Icon from "../../components/common/Icon";
+import { useSelector } from "react-redux";
 
 const checkIcon = require("../../../assets/images/check.png");
 
 const CurrencyScreen = () => {
-  const [selected, setSelected] = useState("BDT");
+  const userData = useSelector((state) => state.auth.userData);
+  const [selected, setSelected] = useState(userData?.currency);
 
   return (
     <SafeAreaView style={{ backgroundColor: "#fff", flex: 1 }}>

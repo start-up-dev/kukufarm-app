@@ -11,23 +11,31 @@ import {
 import color from "../../const/color";
 import SingleMenu from "../../components/settings/SingleMenu";
 import Space from "../../components/common/Space";
+import { useSelector } from "react-redux";
 
 const right = require("../../../assets/images/right.png");
+const profileImg = require("../../../assets/images/profileImg1.jpg");
 
 const { width, height } = Dimensions.get("window");
 
 const SettingsScreen = () => {
+  const userData = useSelector((state) => state.auth.userData);
+
   return (
     <SafeAreaView style={{ backgroundColor: color.background }}>
       <StatusBar />
       <ScrollView style={{ paddingHorizontal: 20, height: height }}>
         <SingleMenu
           title="John Appleseed"
-          subTitle="john.applessed@apple.com"
-          profile
+          subTitle={userData?.email}
+          profile={userData?.picture ? { uri: userData?.picture } : profileImg}
           link="Profile"
         />
-        <SingleMenu title="Currency" unit="KSH" link="Currency" />
+        <SingleMenu
+          title="Currency"
+          unit={userData?.currency}
+          link="Currency"
+        />
         <SingleMenu
           title="Number of eggs in a tray"
           unit="30"

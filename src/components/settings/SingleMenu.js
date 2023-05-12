@@ -42,7 +42,7 @@ const SingleMenu = ({ title, subTitle, unit, profile, right, leave, link }) => {
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         {profile && (
           <Image
-            source={profileImg}
+            source={profile}
             style={{
               width: 48,
               height: 48,

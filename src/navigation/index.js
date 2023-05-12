@@ -20,19 +20,12 @@ const Stack = createNativeStackNavigator();
 const MainStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Log In"
+      initialRouteName="Bottom Tab"
       screenOptions={{ animation: "slide_from_left" }}
     >
       <Stack.Screen
         name="Bottom Tab"
         component={BottomTab}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="Log In"
-        component={LogInScreen}
         options={{
           headerShown: false,
         }}

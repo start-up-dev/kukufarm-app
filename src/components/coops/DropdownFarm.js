@@ -4,7 +4,7 @@ import color from "../../const/color";
 
 const dropdown = require("../../../assets/images/dropdown.png");
 
-const DropdownFarm = ({ myFarm }) => {
+const DropdownFarm = ({ myFarm, data }) => {
   const [visible, setVisible] = useState(false);
   const toggleDropdown = () => {
     setVisible(!visible);
@@ -75,7 +75,7 @@ const DropdownFarm = ({ myFarm }) => {
                 color: color.TextLink,
               }}
             >
-              John's
+              {`${data?.userName}'s`}
             </Text>
             <Text
               style={{

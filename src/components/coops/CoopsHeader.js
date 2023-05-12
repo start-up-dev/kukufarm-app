@@ -6,6 +6,7 @@ import { useNavigation } from "@react-navigation/native";
 
 import DropdownFarm from "./DropdownFarm";
 import Icon from "../common/Icon";
+import { useSelector } from "react-redux";
 
 const dropdown = require("../../../assets/images/dropdown.png");
 const profileImg1 = require("../../../assets/images/profileImg1.jpg");
@@ -13,6 +14,8 @@ const addPeople = require("../../../assets/images/addPeople.png");
 
 const CoopsHeader = () => {
   const navigation = useNavigation();
+
+  const userData = useSelector((state) => state.auth.userData);
 
   return (
     <SafeAreaView
@@ -32,7 +35,7 @@ const CoopsHeader = () => {
           alignItems: "center",
         }}
       >
-        <DropdownFarm />
+        <DropdownFarm data={userData} />
 
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <TouchableOpacity

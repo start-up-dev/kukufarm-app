@@ -56,12 +56,12 @@ const allCountry = [
     dateFormat: "dd/MM/yyyy",
     numericCode: 32,
   },
-  {
-    countryName: "American Samoa",
-    currency: "USD",
-    symbol: "$",
-    numericCode: 840,
-  },
+  // {
+  //   countryName: "American Samoa",
+  //   currency: "USD",
+  //   symbol: "$",
+  //   numericCode: 840,
+  // },
   {
     countryName: "Austria",
     currency: "EUR",
@@ -177,12 +177,12 @@ const allCountry = [
     dateFormat: "dd-MM-yyyy",
     numericCode: 68,
   },
-  {
-    countryName: "Bonaire, Saint Eustatius and Saba ",
-    currency: "USD",
-    symbol: "$",
-    numericCode: 840,
-  },
+  // {
+  //   countryName: "Bonaire, Saint Eustatius and Saba ",
+  //   currency: "USD",
+  //   symbol: "$",
+  //   numericCode: 840,
+  // },
   {
     countryName: "Brazil",
     currency: "BRL",
@@ -389,13 +389,13 @@ const allCountry = [
     dateFormat: "dd/MM/yyyy",
     numericCode: 12,
   },
-  {
-    countryName: "Ecuador",
-    currency: "USD",
-    symbol: "$",
-    dateFormat: "dd/MM/yyyy",
-    numericCode: 840,
-  },
+  // {
+  //   countryName: "Ecuador",
+  //   currency: "USD",
+  //   symbol: "$",
+  //   dateFormat: "dd/MM/yyyy",
+  //   numericCode: 840,
+  // },
   {
     countryName: "Estonia",
     currency: "EUR",
@@ -454,12 +454,12 @@ const allCountry = [
     symbol: "FKP",
     numericCode: 238,
   },
-  {
-    countryName: "Micronesia",
-    currency: "USD",
-    symbol: "$",
-    numericCode: 840,
-  },
+  // {
+  //   countryName: "Micronesia",
+  //   currency: "USD",
+  //   symbol: "$",
+  //   numericCode: 840,
+  // },
   {
     countryName: "Faroe Islands",
     currency: "DKK",
@@ -572,12 +572,12 @@ const allCountry = [
     dateFormat: "d/MM/yyyy",
     numericCode: 320,
   },
-  {
-    countryName: "Guam",
-    currency: "USD",
-    symbol: "$",
-    numericCode: 840,
-  },
+  // {
+  //   countryName: "Guam",
+  //   currency: "USD",
+  //   symbol: "$",
+  //   numericCode: 840,
+  // },
   {
     countryName: "Guinea-Bissau",
     currency: "XOF",
@@ -664,12 +664,12 @@ const allCountry = [
     dateFormat: "d/M/yyyy",
     numericCode: 356,
   },
-  {
-    countryName: "British Indian Ocean Territory",
-    currency: "USD",
-    symbol: "$",
-    numericCode: 840,
-  },
+  // {
+  //   countryName: "British Indian Ocean Territory",
+  //   currency: "USD",
+  //   symbol: "$",
+  //   numericCode: 840,
+  // },
   {
     countryName: "Iraq",
     currency: "IQD",
@@ -900,12 +900,12 @@ const allCountry = [
     symbol: "MGA",
     numericCode: 969,
   },
-  {
-    countryName: "Marshall Islands",
-    currency: "USD",
-    symbol: "$",
-    numericCode: 840,
-  },
+  // {
+  //   countryName: "Marshall Islands",
+  //   currency: "USD",
+  //   symbol: "$",
+  //   numericCode: 840,
+  // },
   {
     countryName: "Macedonia",
     currency: "MKD",
@@ -937,12 +937,12 @@ const allCountry = [
     symbol: "MOP$",
     numericCode: 446,
   },
-  {
-    countryName: "Northern Mariana Islands",
-    currency: "USD",
-    symbol: "$",
-    numericCode: 840,
-  },
+  // {
+  //   countryName: "Northern Mariana Islands",
+  //   currency: "USD",
+  //   symbol: "$",
+  //   numericCode: 840,
+  // },
   {
     countryName: "Martinique",
     currency: "EUR",
@@ -1147,13 +1147,13 @@ const allCountry = [
     symbol: "NZ$",
     numericCode: 554,
   },
-  {
-    countryName: "Puerto Rico",
-    currency: "USD",
-    symbol: "$",
-    dateFormat: "MM-dd-yyyy",
-    numericCode: 840,
-  },
+  // {
+  //   countryName: "Puerto Rico",
+  //   currency: "USD",
+  //   symbol: "$",
+  //   dateFormat: "MM-dd-yyyy",
+  //   numericCode: 840,
+  // },
   {
     countryName: "Palestinian Territory",
     currency: "ILS",
@@ -1167,12 +1167,12 @@ const allCountry = [
     dateFormat: "dd-MM-yyyy",
     numericCode: 978,
   },
-  {
-    countryName: "Palau",
-    currency: "USD",
-    symbol: "$",
-    numericCode: 840,
-  },
+  // {
+  //   countryName: "Palau",
+  //   currency: "USD",
+  //   symbol: "$",
+  //   numericCode: 840,
+  // },
   {
     countryName: "Paraguay",
     currency: "PYG",
@@ -1328,13 +1328,13 @@ const allCountry = [
     symbol: "STD",
     numericCode: 678,
   },
-  {
-    countryName: "El Salvador",
-    currency: "USD",
-    symbol: "$",
-    dateFormat: "MM-dd-yyyy",
-    numericCode: 840,
-  },
+  // {
+  //   countryName: "El Salvador",
+  //   currency: "USD",
+  //   symbol: "$",
+  //   dateFormat: "MM-dd-yyyy",
+  //   numericCode: 840,
+  // },
   {
     countryName: "Sint Maarten",
     currency: "ANG",
@@ -1354,12 +1354,12 @@ const allCountry = [
     symbol: "SZL",
     numericCode: 748,
   },
-  {
-    countryName: "Turks and Caicos Islands",
-    currency: "USD",
-    symbol: "$",
-    numericCode: 840,
-  },
+  // {
+  //   countryName: "Turks and Caicos Islands",
+  //   currency: "USD",
+  //   symbol: "$",
+  //   numericCode: 840,
+  // },
   {
     countryName: "Chad",
     currency: "XAF",
@@ -1397,12 +1397,12 @@ const allCountry = [
     symbol: "NZ$",
     numericCode: 554,
   },
-  {
-    countryName: "East Timor",
-    currency: "USD",
-    symbol: "$",
-    numericCode: 840,
-  },
+  // {
+  //   countryName: "East Timor",
+  //   currency: "USD",
+  //   symbol: "$",
+  //   numericCode: 840,
+  // },
   {
     countryName: "Turkmenistan",
     currency: "TMT",
@@ -1467,12 +1467,12 @@ const allCountry = [
     symbol: "USh",
     numericCode: 800,
   },
-  {
-    countryName: "United States Minor Outlying Islands",
-    currency: "USD",
-    symbol: "$",
-    numericCode: 840,
-  },
+  // {
+  //   countryName: "United States Minor Outlying Islands",
+  //   currency: "USD",
+  //   symbol: "$",
+  //   numericCode: 840,
+  // },
   {
     countryName: "United States",
     currency: "USD",
@@ -1512,18 +1512,18 @@ const allCountry = [
     dateFormat: "dd/MM/yyyy",
     numericCode: 937,
   },
-  {
-    countryName: "British Virgin Islands",
-    currency: "USD",
-    symbol: "$",
-    numericCode: 840,
-  },
-  {
-    countryName: "U.S. Virgin Islands",
-    currency: "USD",
-    symbol: "$",
-    numericCode: 840,
-  },
+  // {
+  //   countryName: "British Virgin Islands",
+  //   currency: "USD",
+  //   symbol: "$",
+  //   numericCode: 840,
+  // },
+  // {
+  //   countryName: "U.S. Virgin Islands",
+  //   currency: "USD",
+  //   symbol: "$",
+  //   numericCode: 840,
+  // },
   {
     countryName: "Vietnam",
     currency: "VND",
