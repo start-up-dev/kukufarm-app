@@ -8,14 +8,18 @@ import {
   Dimensions,
   StatusBar,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import color from "../../const/color";
 import Space from "../../components/common/Space";
 import AppGuide from "../../components/common/AppGuide";
 import SingleItem from "../../components/coops/SingleItem";
+import { useDispatch, useSelector } from "react-redux";
+import { createCoop, getCoop } from "../../api/coop";
+import Loader from "../../components/common/Loader";
 
 //Images
 const archived = require("../../../assets/images/archived.png");
@@ -27,12 +31,39 @@ const CoopScreen = () => {
   const [appGuideHide, setAppguideHide] = useState(true);
   const navigation = useNavigation();
 
-  //navigation.setOptions({ header: () => <Header /> });
+  const coop = useSelector((state) => state.coop.coop);
+  const status = useSelector((state) => state.coop.status);
+  const userData = useSelector((state) => state.auth.userData);
+  const id = userData?._id;
+
+  const dispatch = useDispatch();
+
+  const onNewCoop = () => {
+    if (!(coop?.length > 0)) {
+      dispatch(createCoop(id));
+    } else {
+      Alert.alert(
+        "Upgrade",
+        "Upgrade to Medium or Large farm plans to use this feature and more",
+        [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+        { cancelable: false }
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (id) {
+      if (coop === null) {
+        dispatch(getCoop(id));
+      }
+    }
+  }, [coop, userData]);
 
   return (
-    <SafeAreaView style={{ backgroundColor: color.background }}>
+    <SafeAreaView style={{ backgroundColor: color.background, flex: 1 }}>
       <StatusBar />
-      <ScrollView style={{ paddingHorizontal: 20, height: "100%" }}>
+      <Loader visible={status === "loading" ? true : false} />
+      <ScrollView style={{ paddingHorizontal: 20 }}>
         <Space height={28} />
         <Text style={styles.title}>Coops</Text>
         <Space height={32} />
@@ -44,20 +75,25 @@ const CoopScreen = () => {
           <Text style={styles.archivedText}>Archived flocks</Text>
         </TouchableOpacity>
         <Space height={20} />
-        <View style={styles.newCoopView}>
+        <TouchableOpacity style={styles.newCoopView} onPress={onNewCoop}>
           <Image
             source={plus}
             style={{ width: 10, height: 10, resizeMode: "contain" }}
           />
           <Text style={styles.newCoopText}>New Coop</Text>
-        </View>
+        </TouchableOpacity>
         <Space height={10} />
 
-        <SingleItem
-          title="Coop 1"
-          subtitle="1 flock 1500 birds"
-          link="Single Coop"
-        />
+        {coop?.length > 0 &&
+          coop.map((item) => (
+            <SingleItem
+              title={item?.name}
+              subtitle={`${item?.flocks.length} Flocks`}
+              key={item?._id}
+              coopId={item?._id}
+              link="Single Coop"
+            />
+          ))}
 
         <Space height={150} />
         {appGuideHide && <AppGuide onPress={() => setAppguideHide(false)} />}

@@ -43,13 +43,7 @@ const CoopStack = () => {
           header: () => <Header title="Coop 1" back deleted />,
         }}
       />
-      <Stack.Screen
-        name="Flock Details"
-        component={FlockDetailsScreen}
-        options={{
-          header: () => <Header title="C1 Kienyeji 1 Mixed" back dot />,
-        }}
-      />
+      <Stack.Screen name="Flock Details" component={FlockDetailsScreen} />
     </Stack.Navigator>
   );
 };

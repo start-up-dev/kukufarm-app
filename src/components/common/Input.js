@@ -13,40 +13,19 @@ import Icon from "./Icon";
 
 const dropdownIcon = require("../../../assets/images/dropdownMedium.png");
 
-const Input = ({ label, onChangeText, value, placeholder, type, d }) => {
-  // Date Picker
-  const [selectedDate, setSelectedDate] = useState();
-  const [date, setDate] = useState(new Date());
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [isPastDate, setIsPastDate] = useState();
-
-  const datePickerHandler = () => {
-    showDatePicker();
-  };
-
-  const showDatePicker = () => {
-    setDatePickerVisibility(true);
-  };
-
-  const hideDatePicker = () => {
-    setDatePickerVisibility(false);
-  };
-
-  const handleConfirm = (date) => {
-    const options = { year: "numeric", month: "short", day: "numeric" };
-    const formattedDate = date.toLocaleDateString("en-GB", options);
-
-    setSelectedDate(formattedDate);
-
-    const currentDate = new Date();
-    if (date.setHours(0, 0, 0, 0) < currentDate.setHours(0, 0, 0, 0)) {
-      setIsPastDate(true);
-    } else {
-      setIsPastDate(false);
-    }
-    hideDatePicker();
-  };
-
+const Input = ({
+  label,
+  onChangeText,
+  value,
+  placeholder,
+  type,
+  d,
+  dpVisible,
+  dpConfirm,
+  dpCancel,
+  dpHandler,
+  selectedDate,
+}) => {
   return (
     <View style={[styles.container, d && { paddingVertical: 4 }]}>
       {label && (
@@ -64,16 +43,16 @@ const Input = ({ label, onChangeText, value, placeholder, type, d }) => {
       )}
 
       {d ? (
-        <TouchableOpacity style={styles.dateBtn} onPress={datePickerHandler}>
+        <TouchableOpacity style={styles.dateBtn} onPress={dpHandler}>
           <Text style={styles.dateText}>
             {selectedDate ? selectedDate : "Select Date"}
           </Text>
 
           <DateTimePickerModal
-            isVisible={isDatePickerVisible}
+            isVisible={dpVisible}
             mode="date"
-            onConfirm={handleConfirm}
-            onCancel={hideDatePicker}
+            onConfirm={dpConfirm}
+            onCancel={dpCancel}
           />
         </TouchableOpacity>
       ) : (

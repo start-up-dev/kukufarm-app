@@ -14,13 +14,18 @@ import SplitScreen from "../screens/coops/SplitScreen";
 import AddBirdScreen from "../screens/coops/AddBirdsScreen";
 import RemoveBirdScreen from "../screens/coops/RemoveBirdScreen";
 import AddExpenseScreen from "../screens/records/AddExpenseScreen";
+import { useSelector } from "react-redux";
 
 const Stack = createNativeStackNavigator();
 
 const MainStack = () => {
+  const userData = useSelector((state) => state.auth.userData);
+
+  // console.log("From MainStack: " + JSON.stringify(userData));
+
   return (
     <Stack.Navigator
-      initialRouteName="Bottom Tab"
+      initialRouteName={"Bottom Tab"}
       screenOptions={{ animation: "slide_from_left" }}
     >
       <Stack.Screen
@@ -37,20 +42,8 @@ const MainStack = () => {
           header: () => <Header title="Profile" back edit />,
         }}
       />
-      <Stack.Screen
-        name="Edit Profile"
-        component={EditProfileScreen}
-        options={{
-          header: () => <Header title="Edit Profile" cancel save />,
-        }}
-      />
-      <Stack.Screen
-        name="Add Flock"
-        component={AddFlockScreen}
-        options={{
-          header: () => <Header title="New Flock" cancel save />,
-        }}
-      />
+      <Stack.Screen name="Edit Profile" component={EditProfileScreen} />
+      <Stack.Screen name="Add Flock" component={AddFlockScreen} />
       <Stack.Screen
         name="Add People"
         component={AddPeopleSreen}
@@ -86,20 +79,8 @@ const MainStack = () => {
           header: () => <Header title="Split flock" cancel save />,
         }}
       />
-      <Stack.Screen
-        name="Add Bird"
-        component={AddBirdScreen}
-        options={{
-          header: () => <Header title="Add birds" cancel save />,
-        }}
-      />
-      <Stack.Screen
-        name="Remove Bird"
-        component={RemoveBirdScreen}
-        options={{
-          header: () => <Header title="Remove birds" cancel save />,
-        }}
-      />
+      <Stack.Screen name="Add Bird" component={AddBirdScreen} />
+      <Stack.Screen name="Remove Bird" component={RemoveBirdScreen} />
       <Stack.Screen
         name="Add Expense"
         component={AddExpenseScreen}

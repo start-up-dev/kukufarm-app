@@ -3,13 +3,15 @@ import { useNavigation } from "@react-navigation/native";
 
 import color from "../../const/color";
 
-const InlineButton = ({ title, icon, link }) => {
+const InlineButton = ({ title, icon, link, flockData }) => {
   const navigation = useNavigation();
 
   return (
     <TouchableOpacity
       style={styles.btnView}
-      onPress={() => navigation.navigate(link)}
+      onPress={() =>
+        navigation.navigate(link, flockData && { data: flockData })
+      }
     >
       <Image
         source={icon}

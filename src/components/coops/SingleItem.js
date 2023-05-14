@@ -3,12 +3,16 @@ import { useNavigation } from "@react-navigation/native";
 
 import color from "../../const/color";
 
-const SingleItem = ({ title, subtitle, link }) => {
+const SingleItem = ({ title, subtitle, link, coopId }) => {
   const navigation = useNavigation();
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate(link)}
+      onPress={
+        link
+          ? () => navigation.navigate(link, coopId && { coopId: coopId })
+          : console.log("No Link Found")
+      }
       style={styles.coopView}
     >
       <Text style={styles.coopTitle}>{title}</Text>

@@ -101,9 +101,7 @@ const Header = ({
           )}
 
           {save && (
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Edit Profile")}
-            >
+            <TouchableOpacity onPress={save}>
               <Text
                 style={{
                   fontFamily: "Sora-Regular",

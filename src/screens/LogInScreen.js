@@ -71,7 +71,6 @@ const LogInScreen = () => {
     if (!!token) {
       const body = { bearerToken: token };
       dispatch(googleAuth(body));
-      console.log(token);
     }
   }, [response, token]);
 
@@ -81,8 +80,6 @@ const LogInScreen = () => {
       dispatch(appleAuth(body));
       console.log(body);
     }
-
-    console.log(appleToken);
   }, [appleToken]);
 
   useEffect(() => {

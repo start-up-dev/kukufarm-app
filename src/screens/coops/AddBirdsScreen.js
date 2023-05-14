@@ -6,72 +6,128 @@ import {
   Dimensions,
   TouchableOpacity,
   StyleSheet,
+  Alert,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
 import color from "../../const/color";
 import Input from "../../components/common/Input";
 import Space from "../../components/common/Space";
 import BottomSheet from "../../components/common/BottomSheet";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Icon from "../../components/common/Icon";
+import { useDispatch, useSelector } from "react-redux";
+import { addBirds, getFlock } from "../../api/coop";
+import Header from "../../components/common/Header";
+import { clearRes } from "../../store/coopSlice";
+import Loader from "../../components/common/Loader";
 
 const dropdownIcon = require("../../../assets/images/dropdownMedium.png");
 
 const { width, height } = Dimensions.get("window");
 
-const AddBirdScreen = () => {
-  const [inputs, setInputs] = useState({
-    breed_name: "",
-    type: "C2 White sussex 2 Layers",
-    hatched: "",
-    numOfBirds: 3,
-    cpd: 3.54,
+const AddBirdScreen = ({ route }) => {
+  const navigation = useNavigation();
+
+  navigation.setOptions({
+    header: () => <Header title="Add birds" cancel save={onSave} />,
   });
-  const [visible, setVisible] = useState(false);
+  const [inputs, setInputs] = useState({
+    numOfBirds: "0",
+    cpd: "0.00",
+  });
+  const { data } = route.params;
+
+  const res = useSelector((state) => state.coop.res);
+  const status = useSelector((state) => state.coop.status);
+
+  const dispatch = useDispatch();
+
+  // Date Picker
+  const [selectedDate, setSelectedDate] = useState();
+  const [date, setDate] = useState();
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [isPastDate, setIsPastDate] = useState();
+
+  const datePickerHandler = () => {
+    showDatePicker();
+  };
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    const currentDate = new Date();
+
+    if (date.setHours(0, 0, 0, 0) > currentDate.setHours(0, 0, 0, 0)) {
+      const options = { year: "numeric", month: "short", day: "numeric" };
+      const formattedDate = currentDate.toLocaleDateString("en-GB", options);
+      const day = String(currentDate.getDate()).padStart(2, "0");
+      const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+      const year = currentDate.getFullYear();
+      const serverFormat = `${day}-${month}-${year}`;
+
+      setSelectedDate(formattedDate);
+      setDate(serverFormat);
+      setIsPastDate(true);
+    } else {
+      const options = { year: "numeric", month: "short", day: "numeric" };
+      const formattedDate = date.toLocaleDateString("en-GB", options);
+      const day = String(date.getDate()).padStart(2, "0");
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const year = date.getFullYear();
+      const serverFormat = `${day}-${month}-${year}`;
+
+      setSelectedDate(formattedDate);
+      setDate(serverFormat);
+      setIsPastDate(false);
+    }
+    hideDatePicker();
+  };
 
   const handleOnchange = (text, input) => {
     setInputs((prevState) => ({ ...prevState, [input]: text }));
   };
 
-  const toggleDropdown = () => {
-    setVisible(!visible);
-  };
+  const onSave = () => {
+    const body = {
+      date: date,
+      flock: data._id,
+      quantity: inputs.numOfBirds,
+      costPerBird: inputs.cpd,
+    };
 
-  const renderDropdown = () => {
-    if (visible) {
-      return (
-        <View style={styles.dropdownView}>
-          <TouchableOpacity
-            onPress={() => {
-              toggleDropdown(), handleOnchange("C1 Kenbro 2 - Broiler", "type");
-            }}
-          >
-            <Text style={styles.menuText}>C1 Kenbro 2 - Broiler</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              toggleDropdown(),
-                handleOnchange("C2 White sussex 2 Layers", "type");
-            }}
-          >
-            <Text style={styles.menuText}>C2 White sussex 2 Layers</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              toggleDropdown(), handleOnchange("C1 kenbro 1 layer", "type");
-            }}
-          >
-            <Text style={styles.menuText}>C1 kenbro 1 layer</Text>
-          </TouchableOpacity>
-        </View>
+    if (date && inputs.numOfBirds > 0 && inputs.cpd > 0) {
+      dispatch(addBirds(body));
+      dispatch(getFlock(data?.coop));
+    } else {
+      Alert.alert(
+        "Empty Input",
+        "Date, Number of birds and Cost per bird must be filled.",
+        [{ text: "OK" }],
+        { cancelable: false }
       );
     }
   };
+
+  useEffect(() => {
+    if (res === "Bird added successfully") {
+      dispatch(clearRes());
+      navigation.goBack();
+    }
+  }, [res]);
+
   return (
     <SafeAreaView style={{ backgroundColor: color.background, flex: 1 }}>
       <StatusBar />
+      <Loader visible={status === "loading" ? true : false} />
       <View style={{ paddingHorizontal: 20 }}>
         <Space height={10} />
-
         <View style={styles.container}>
           <Text
             style={{
@@ -89,7 +145,7 @@ const AddBirdScreen = () => {
               flexDirection: "row",
               alignItems: "center",
             }}
-            onPress={toggleDropdown}
+            // onPress={toggleDropdown}
           >
             <Text
               style={{
@@ -100,12 +156,20 @@ const AddBirdScreen = () => {
                 color: color.TextPrimary,
               }}
             >
-              {inputs.type}
+              {data?.name}
             </Text>
-            <Icon icon={dropdownIcon} m />
+            {/* <Icon icon={dropdownIcon} m /> */}
           </TouchableOpacity>
         </View>
-        <Input label="Date " d />
+        <Input
+          label="Date"
+          d
+          selectedDate={selectedDate}
+          dpCancel={hideDatePicker}
+          dpHandler={datePickerHandler}
+          dpConfirm={handleConfirm}
+          dpVisible={isDatePickerVisible}
+        />
         <Text style={styles.guideText}>
           Total cost will be logged as an expense
         </Text>
@@ -124,8 +188,12 @@ const AddBirdScreen = () => {
         </Text>
       </View>
 
-      <BottomSheet title1="0 Birds • Expense (KSH) 0" />
-      {renderDropdown()}
+      <BottomSheet
+        title1={`${inputs.numOfBirds} Birds • Expense (KSH) ${
+          inputs.numOfBirds * inputs.cpd
+        }`}
+      />
+      {/* {renderDropdown()} */}
     </SafeAreaView>
   );
 };
@@ -170,3 +238,40 @@ const styles = StyleSheet.create({
   },
 });
 export default AddBirdScreen;
+
+// const [visible, setVisible] = useState(false);
+
+// const toggleDropdown = () => {
+//   setVisible(!visible);
+// };
+
+// const renderDropdown = () => {
+//   if (visible) {
+//     return (
+//       <View style={styles.dropdownView}>
+//         <TouchableOpacity
+//           onPress={() => {
+//             toggleDropdown(), handleOnchange("C1 Kenbro 2 - Broiler", "type");
+//           }}
+//         >
+//           <Text style={styles.menuText}>C1 Kenbro 2 - Broiler</Text>
+//         </TouchableOpacity>
+//         <TouchableOpacity
+//           onPress={() => {
+//             toggleDropdown(),
+//               handleOnchange("C2 White sussex 2 Layers", "type");
+//           }}
+//         >
+//           <Text style={styles.menuText}>C2 White sussex 2 Layers</Text>
+//         </TouchableOpacity>
+//         <TouchableOpacity
+//           onPress={() => {
+//             toggleDropdown(), handleOnchange("C1 kenbro 1 layer", "type");
+//           }}
+//         >
+//           <Text style={styles.menuText}>C1 kenbro 1 layer</Text>
+//         </TouchableOpacity>
+//       </View>
+//     );
+//   }
+// };

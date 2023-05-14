@@ -1,7 +1,6 @@
 import Axios from ".";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import axios from "axios";
 
 //Store Data to AsyncStorage
 
@@ -55,8 +54,10 @@ export const getMe = createAsyncThunk("auth/getMe", async () => {
 export const updateMe = createAsyncThunk("auth/updateMe", async (body) => {
   try {
     const res = await Axios.patch(`/user`, body);
-    return res.data.user;
+    console.log("Try Update: " + JSON.stringify(res.data));
+    return res.data;
   } catch (err) {
+    console.log("Catch Update: " + JSON.stringify(err.response.data));
     return err.response.data;
   }
 });
