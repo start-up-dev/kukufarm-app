@@ -20,6 +20,7 @@ import SingleItem from "../../components/coops/SingleItem";
 import { useDispatch, useSelector } from "react-redux";
 import { createCoop, getCoop } from "../../api/coop";
 import Loader from "../../components/common/Loader";
+import SnackBar from "../../components/common/SnackBar";
 
 //Images
 const archived = require("../../../assets/images/archived.png");
@@ -95,7 +96,6 @@ const CoopScreen = () => {
             />
           ))}
 
-        <Space height={150} />
         {appGuideHide && <AppGuide onPress={() => setAppguideHide(false)} />}
       </ScrollView>
     </SafeAreaView>

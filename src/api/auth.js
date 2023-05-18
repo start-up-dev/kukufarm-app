@@ -61,3 +61,19 @@ export const updateMe = createAsyncThunk("auth/updateMe", async (body) => {
     return err.response.data;
   }
 });
+
+// Add CoWorker
+
+export const addCoWorker = createAsyncThunk(
+  "auth/addCoWorker",
+  async (body) => {
+    try {
+      const res = await Axios.patch(`/user/${body.id}/assign/${body.email}`);
+      console.log("Try Add CoWorker: " + JSON.stringify(res.data));
+      return res.data;
+    } catch (err) {
+      console.log("Catch Add CoWorker: " + JSON.stringify(err.response.data));
+      return err.response.data;
+    }
+  }
+);

@@ -3,9 +3,12 @@ import Space from "../../components/common/Space";
 import color from "../../const/color";
 import DetailProps from "../../components/coops/DetailProps";
 import InlineButton from "../../components/common/InlineButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import Header from "../../components/common/Header";
+import { useEffect } from "react";
+import { getFlock } from "../../api/coop";
+import Loader from "../../components/common/Loader";
 
 const plusCircle = require("../../../assets/images/plus-circle.png");
 const minusCircle = require("../../../assets/images/minus-circle.png");
@@ -13,12 +16,19 @@ const split = require("../../../assets/images/split.png");
 
 const FlockDetailsScreen = ({ route }) => {
   const flock = useSelector((state) => state.coop.flock);
+  const res = useSelector((state) => state.coop.res);
+  const status = useSelector((state) => state.coop.status);
+
   const { coopId } = route.params;
 
   const navigation = useNavigation();
 
+  const dispatch = useDispatch();
+
   navigation.setOptions({
-    header: () => <Header title={currentFlock.name} back dot />,
+    header: () => (
+      <Header title={currentFlock.name} back dot={currentFlock._id} />
+    ),
   });
 
   const filterFlock = flock.filter((obj) => obj._id === coopId);
@@ -37,12 +47,18 @@ const FlockDetailsScreen = ({ route }) => {
 
     return weeksDiff;
   };
-
-  console.log(currentFlock);
+  console.log(coopId);
+  useEffect(() => {
+    if (res === "Flock deleted successfully") {
+      dispatch(getFlock(coopId));
+      navigation.navigate("Coop");
+    }
+  }, [res]);
 
   return (
     <SafeAreaView style={{ backgroundColor: color.background }}>
       <StatusBar />
+      <Loader visible={status === "loading" ? true : false} />
       <ScrollView style={{ paddingHorizontal: 20, height: "100%" }}>
         <Space height={10} />
         <DetailProps title="Breed" value={currentFlock?.breed} />
@@ -71,6 +87,7 @@ const FlockDetailsScreen = ({ route }) => {
             title="Split flock by gender"
             icon={split}
             link="Split"
+            flockData={currentFlock}
           />
         )}
       </ScrollView>

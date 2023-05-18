@@ -1,8 +1,10 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, Dimensions } from "react-native";
 import color from "../../const/color";
 import Icon from "./Icon";
 
 const close = require("../../../assets/images/close.png");
+
+const { width, height } = Dimensions.get("window");
 
 const AppGuide = ({ onPress = () => {} }) => {
   return (
@@ -11,6 +13,10 @@ const AppGuide = ({ onPress = () => {} }) => {
         backgroundColor: "#F5F5F5",
         padding: 16,
         borderRadius: 7,
+        position: "absolute",
+        top: height - 350,
+        right: 0,
+        left: 0,
       }}
     >
       <TouchableOpacity onPress={onPress} style={{ alignItems: "flex-end" }}>

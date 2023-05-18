@@ -11,7 +11,7 @@ const SingleItem = ({ title, subtitle, link, coopId }) => {
       onPress={
         link
           ? () => navigation.navigate(link, coopId && { coopId: coopId })
-          : console.log("No Link Found")
+          : null
       }
       style={styles.coopView}
     >

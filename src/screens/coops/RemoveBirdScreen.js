@@ -20,6 +20,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFlock, removeBirds } from "../../api/coop";
 import { clearRes } from "../../store/coopSlice";
 import Header from "../../components/common/Header";
+import Loader from "../../components/common/Loader";
+import SnackBar from "../../components/common/SnackBar";
 
 const dropdownIcon = require("../../../assets/images/dropdownMedium.png");
 
@@ -37,6 +39,7 @@ const RemoveBirdScreen = ({ route }) => {
     numOfBirds: "0",
   });
   const [visible, setVisible] = useState(false);
+  const [sbVisible, setsbVisible] = useState(false);
 
   const { data } = route.params;
 
@@ -46,7 +49,7 @@ const RemoveBirdScreen = ({ route }) => {
   const dispatch = useDispatch();
 
   // Date Picker
-  const [selectedDate, setSelectedDate] = useState();
+  const [selectedDate, setSelectedDate] = useState(null);
   const [date, setDate] = useState();
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isPastDate, setIsPastDate] = useState();
@@ -108,9 +111,8 @@ const RemoveBirdScreen = ({ route }) => {
       type: inputs.type,
     };
 
-    if (date && inputs.numOfBirds > 0) {
+    if (inputs.numOfBirds > 0) {
       dispatch(removeBirds(body));
-      dispatch(getFlock(data?.coop));
     } else {
       Alert.alert(
         "Empty Input",
@@ -122,8 +124,22 @@ const RemoveBirdScreen = ({ route }) => {
   };
 
   useEffect(() => {
-    if (res === "Bird added successfully") {
+    if (selectedDate === null) {
+      const currentDate = new Date();
+      const options = { year: "numeric", month: "short", day: "numeric" };
+      const formattedDate = currentDate.toLocaleDateString("en-GB", options);
+      const day = String(currentDate.getDate()).padStart(2, "0");
+      const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+      const year = currentDate.getFullYear();
+      const serverFormat = `${day}-${month}-${year}`;
+
+      setSelectedDate(formattedDate);
+      setDate(serverFormat);
+    }
+    if (res === "Bird removed successfully") {
+      setsbVisible(true);
       dispatch(clearRes());
+      dispatch(getFlock(data?.coop));
       navigation.goBack();
     }
   }, [res]);
@@ -167,6 +183,7 @@ const RemoveBirdScreen = ({ route }) => {
   return (
     <SafeAreaView style={{ backgroundColor: color.background, flex: 1 }}>
       <StatusBar />
+      <Loader visible={status === "loading" ? true : false} />
       <View style={{ paddingHorizontal: 20 }}>
         <Space height={10} />
 
@@ -253,6 +270,8 @@ const RemoveBirdScreen = ({ route }) => {
           manage and track egg production rate
         </Text>
       </View>
+
+      <SnackBar title={"Birds removed"} visible={sbVisible} />
 
       {renderDropdown()}
     </SafeAreaView>

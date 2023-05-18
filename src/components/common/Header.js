@@ -8,6 +8,8 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 import color from "../../const/color";
+import Icon from "./Icon";
+import PopUp from "./PopUp";
 
 const left = require("../../../assets/images/left.png");
 const deleteIcon = require("../../../assets/images/delete.png");
@@ -119,23 +121,11 @@ const Header = ({
             <TouchableOpacity
             //onPress={() => navigation.navigate("Edit Profile")}
             >
-              <Image
-                source={deleteIcon}
-                style={{ width: 14, height: 18, resizeMode: "contain" }}
-              />
+              <Icon icon={deleteIcon} />
             </TouchableOpacity>
           )}
 
-          {dot && (
-            <TouchableOpacity
-            //onPress={() => navigation.navigate("Edit Profile")}
-            >
-              <Image
-                source={threeDot}
-                style={{ width: 16, height: 4, resizeMode: "contain" }}
-              />
-            </TouchableOpacity>
-          )}
+          {dot && <PopUp id={dot} />}
 
           {empty && <View></View>}
         </View>

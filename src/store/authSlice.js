@@ -1,5 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { appleAuth, getMe, googleAuth, updateMe } from "../api/auth";
+import {
+  addCoWorker,
+  appleAuth,
+  getMe,
+  googleAuth,
+  updateMe,
+} from "../api/auth";
 
 const initialState = {
   loggedIn: false,
@@ -23,6 +29,9 @@ export const authSlice = createSlice({
     },
     clearRes: (state, action) => {
       state.res = null;
+    },
+    clearError: (state, action) => {
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
@@ -57,9 +66,17 @@ export const authSlice = createSlice({
       .addCase(updateMe.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.error = action.payload?.issue;
-        state.res = action.payload;
+        state.res = action.payload.message;
+      })
+      .addCase(addCoWorker.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(addCoWorker.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.error = action.payload?.issue;
+        state.res = action.payload.message;
       });
   },
 });
 
-export const { logIn, logOut, clearRes } = authSlice.actions;
+export const { logIn, logOut, clearRes, clearError } = authSlice.actions;

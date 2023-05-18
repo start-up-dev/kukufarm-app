@@ -72,6 +72,8 @@ const RecordDetailsScreen = () => {
             <RecordBoxHeader />
           </>
         )}
+
+        <Space height={150} />
       </ScrollView>
 
       <RBSheet

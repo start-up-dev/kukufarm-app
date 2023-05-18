@@ -38,58 +38,63 @@ const CoopsHeader = () => {
         <DropdownFarm data={userData} />
 
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("Farm User")}
-            style={{ flexDirection: "row" }}
-          >
-            <Image
-              source={profileImg1}
-              style={{
-                borderRadius: 100,
-                width: 32,
-                height: 32,
-                borderWidth: 2,
-                borderColor: "#FCFCFC",
-              }}
-            />
-            <Image
-              source={profileImg1}
-              style={{
-                borderRadius: 100,
-                width: 32,
-                height: 32,
-                borderWidth: 2,
-                borderColor: "#FCFCFC",
-                position: "relative",
-                right: 4,
-              }}
-            />
-            <View
-              style={{
-                backgroundColor: "#F5F5F5",
-                borderRadius: 100,
-                width: 32,
-                height: 32,
-                alignItems: "center",
-                justifyContent: "center",
-                borderWidth: 2,
-                borderColor: "#F5F5F5",
-                position: "relative",
-                right: 8,
-              }}
+          {userData?.coWorkers?.length > 0 ? (
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Farm User")}
+              style={{ flexDirection: "row" }}
             >
-              <Text
+              <Image
+                source={profileImg1}
                 style={{
-                  fontFamily: "Sora-SemiBold",
-                  fontSize: 12,
-                  lineHeight: 16,
-                  color: color.TextSecondary,
+                  borderRadius: 100,
+                  width: 32,
+                  height: 32,
+                  borderWidth: 2,
+                  borderColor: "#FCFCFC",
+                }}
+              />
+              <Image
+                source={profileImg1}
+                style={{
+                  borderRadius: 100,
+                  width: 32,
+                  height: 32,
+                  borderWidth: 2,
+                  borderColor: "#FCFCFC",
+                  position: "relative",
+                  right: 4,
+                }}
+              />
+              <View
+                style={{
+                  backgroundColor: "#F5F5F5",
+                  borderRadius: 100,
+                  width: 32,
+                  height: 32,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderWidth: 2,
+                  borderColor: "#F5F5F5",
+                  position: "relative",
+                  right: 8,
                 }}
               >
-                +2
-              </Text>
-            </View>
-          </TouchableOpacity>
+                <Text
+                  style={{
+                    fontFamily: "Sora-SemiBold",
+                    fontSize: 12,
+                    lineHeight: 16,
+                    color: color.TextSecondary,
+                  }}
+                >
+                  +2
+                </Text>
+              </View>
+            </TouchableOpacity>
+          ) : (
+            <View></View>
+          )}
+
           <TouchableOpacity
             style={{ marginLeft: 15 }}
             onPress={() => navigation.navigate("Add People")}

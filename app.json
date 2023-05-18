@@ -11,7 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.makereal.kukufarm"
@@ -27,12 +29,14 @@
     "web": {
       "favicon": "./assets/images/192x.png"
     },
+    "schema": "kukufarm",
+    "plugins": [
+      "expo-apple-authentication"
+    ],
     "extra": {
       "eas": {
-        "projectId": "8c959ac8-7893-42ab-ae35-942c70238aed"
+        "projectId": "e5368a8a-f769-429c-b154-e6485bcd4637"
       }
-    },
-    "schema": "kukufarm",
-    "plugins": ["expo-apple-authentication"]
+    }
   }
 }

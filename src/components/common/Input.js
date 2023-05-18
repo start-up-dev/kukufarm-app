@@ -58,7 +58,6 @@ const Input = ({
       ) : (
         <TextInput
           onChangeText={onChangeText}
-          value={value ? value : ""}
           placeholder={placeholder}
           style={{
             fontFamily: "Sora-Regular",
@@ -68,7 +67,7 @@ const Input = ({
             color: "#282A38",
           }}
           keyboardType={type ? type : "default"}
-          defaultValue={`${value}`}
+          defaultValue={value}
         />
       )}
     </View>

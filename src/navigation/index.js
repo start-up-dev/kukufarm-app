@@ -18,14 +18,10 @@ import { useSelector } from "react-redux";
 
 const Stack = createNativeStackNavigator();
 
-const MainStack = () => {
-  const userData = useSelector((state) => state.auth.userData);
-
-  // console.log("From MainStack: " + JSON.stringify(userData));
-
+const MainStack = ({ initialRoute }) => {
   return (
     <Stack.Navigator
-      initialRouteName={"Bottom Tab"}
+      initialRouteName={initialRoute}
       screenOptions={{ animation: "slide_from_left" }}
     >
       <Stack.Screen
@@ -48,7 +44,7 @@ const MainStack = () => {
         name="Add People"
         component={AddPeopleSreen}
         options={{
-          header: () => <Header title="Add People" cancel save />,
+          header: () => <Header title="Add People" cancel empty />,
         }}
       />
       <Stack.Screen
@@ -72,13 +68,7 @@ const MainStack = () => {
           header: () => <Header title="Default currency" cancel save />,
         }}
       />
-      <Stack.Screen
-        name="Split"
-        component={SplitScreen}
-        options={{
-          header: () => <Header title="Split flock" cancel save />,
-        }}
-      />
+      <Stack.Screen name="Split" component={SplitScreen} />
       <Stack.Screen name="Add Bird" component={AddBirdScreen} />
       <Stack.Screen name="Remove Bird" component={RemoveBirdScreen} />
       <Stack.Screen

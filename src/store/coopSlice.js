@@ -3,9 +3,11 @@ import {
   addBirds,
   createCoop,
   createFlock,
+  deleteFlock,
   getCoop,
   getFlock,
   removeBirds,
+  splitFlock,
 } from "../api/coop";
 
 const initialState = {
@@ -72,6 +74,22 @@ export const coopSlice = createSlice({
         state.status = "loading";
       })
       .addCase(removeBirds.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.error = action.payload?.issue;
+        state.res = action.payload?.message;
+      })
+      .addCase(deleteFlock.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(deleteFlock.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.error = action.payload?.issue;
+        state.res = action.payload?.message;
+      })
+      .addCase(splitFlock.pending, (state, action) => {
+        state.status = "loading";
+      })
+      .addCase(splitFlock.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.error = action.payload?.issue;
         state.res = action.payload?.message;

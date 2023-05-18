@@ -1,11 +1,17 @@
-import { TouchableOpacity, StyleSheet, Image, Text } from "react-native";
+import {
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  Text,
+  ActivityIndicator,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import color from "../../const/color";
 
 const plus = require("../../../assets/images/plus.png");
 
-const Button = ({ title, onPress = () => {}, fill, icon, mini }) => {
+const Button = ({ title, onPress = () => {}, fill, icon, mini, status }) => {
   const navigation = useNavigation();
 
   return (
@@ -17,21 +23,27 @@ const Button = ({ title, onPress = () => {}, fill, icon, mini }) => {
         mini && { width: 165 },
       ]}
     >
-      {icon && (
-        <Image
-          source={plus}
-          style={{ width: 10, height: 10, resizeMode: "contain" }}
-        />
-      )}
+      {status === "loading" ? (
+        <ActivityIndicator color={"#fff"} />
+      ) : (
+        <>
+          {icon && (
+            <Image
+              source={plus}
+              style={{ width: 10, height: 10, resizeMode: "contain" }}
+            />
+          )}
 
-      <Text
-        style={[
-          styles.btnText,
-          fill && { color: color.background, fontFamily: "Sora-SemiBold" },
-        ]}
-      >
-        {title}
-      </Text>
+          <Text
+            style={[
+              styles.btnText,
+              fill && { color: color.background, fontFamily: "Sora-SemiBold" },
+            ]}
+          >
+            {title}
+          </Text>
+        </>
+      )}
     </TouchableOpacity>
   );
 };

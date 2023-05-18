@@ -4,10 +4,59 @@ import Space from "../../components/common/Space";
 import Input from "../../components/common/Input";
 import Button from "../../components/common/Button";
 import MyAlert from "../../components/common/Alert";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addCoWorker } from "../../api/auth";
+import Loader from "../../components/common/Loader";
+import { clearError, clearRes } from "../../store/authSlice";
 
 const AddPeopleSreen = () => {
+  const [email, setEmail] = useState();
   const [modalVisible, setModalVisible] = useState(false);
+
+  const userData = useSelector((state) => state.auth.userData);
+  const status = useSelector((state) => state.auth.status);
+  const error = useSelector((state) => state.auth.error);
+
+  const dispatch = useDispatch();
+
+  function validateEmail(email) {
+    // Regular expression pattern for email validation
+    var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return pattern.test(email);
+  }
+
+  const onAdd = () => {
+    const body = {
+      id: userData?._id,
+      email: email,
+    };
+    if (validateEmail(email)) {
+      dispatch(addCoWorker(body));
+    } else {
+      Alert.alert(
+        "Email Invalid",
+        "Please insert a valid email address",
+        [{ text: "OK" }],
+        { cancelable: false }
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (error?.message === "Email not found") {
+      dispatch(clearError());
+      setModalVisible(true);
+    }
+  }, [error]);
+
+  // useEffect(() => {
+  //   if (res === "CoWorker Successfully Added") {
+  //     dispatch(clearRes());
+  //     navigat
+  //   }
+  // }, [error]);
 
   return (
     <SafeAreaView style={{ backgroundColor: color.background, flex: 1 }}>
@@ -41,7 +90,8 @@ const AddPeopleSreen = () => {
           People you add will be able to view farm data and make new record
           entries.
         </Text>
-        <Input label="Email" />
+        <Space height={40} />
+        <Input placeholder={"Email"} onChangeText={(text) => setEmail(text)} />
         <Text
           style={{
             fontFamily: "Sora-Regular",
@@ -56,11 +106,7 @@ const AddPeopleSreen = () => {
         </Text>
         <Space height={35} />
 
-        <Button
-          title="Add to farm"
-          onPress={() => setModalVisible(true)}
-          fill
-        />
+        <Button status={status} title="Add to farm" onPress={onAdd} fill />
       </View>
     </SafeAreaView>
   );

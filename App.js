@@ -25,6 +25,8 @@ export default function App() {
 
 const Main = () => {
   const isloggedIn = useSelector((state) => state.auth.loggedIn);
+  // const userData = useSelector((state) => state.auth.userData);
+
   const dispatch = useDispatch();
 
   const [fontsLoaded] = useFonts({
@@ -50,7 +52,7 @@ const Main = () => {
 
   return (
     <NavigationContainer>
-      {isloggedIn ? <MainStack /> : <AuthStack />}
+      {isloggedIn ? <MainStack initialRoute={"Bottom Tab"} /> : <AuthStack />}
     </NavigationContainer>
   );
 };

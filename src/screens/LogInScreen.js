@@ -22,6 +22,7 @@ import color from "../const/color";
 import { useDispatch, useSelector } from "react-redux";
 import { appleAuth, googleAuth } from "../api/auth";
 import { logIn } from "../store/authSlice";
+import Loader from "../components/common/Loader";
 
 //Images
 const google = require("../../assets/images/google.png");
@@ -31,6 +32,7 @@ const LogInScreen = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.userData);
+  const status = useSelector((state) => state.auth.status);
 
   const [token, setToken] = useState("");
   const [appleToken, setAppleToken] = useState("");
@@ -104,6 +106,7 @@ const LogInScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar />
+      <Loader visible={status === "loading" ? true : false} />
       <ScrollView style={{ paddingHorizontal: 16 }}>
         <Space height={100} />
         <Text style={styles.title}>Kuku farm</Text>

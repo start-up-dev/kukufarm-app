@@ -67,6 +67,32 @@ export const getFlock = createAsyncThunk("coop/getFlock", async (id) => {
   }
 });
 
+// Delete Flock
+
+export const deleteFlock = createAsyncThunk("coop/deleteFlock", async (id) => {
+  try {
+    const res = await Axios.delete(`/flock/${id}`);
+    console.log("Try Delete Flock: " + JSON.stringify(res.data));
+    return res.data;
+  } catch (err) {
+    console.log("Catch Delete Flock: " + JSON.stringify(err.response.data));
+    return err.response.data;
+  }
+});
+
+// Split Flock
+
+export const splitFlock = createAsyncThunk("coop/splitFlock", async (body) => {
+  try {
+    const res = await Axios.patch(`/flock/split/${body.id}`, body.data);
+    console.log("Try Split Flock: " + JSON.stringify(res.data));
+    return res.data;
+  } catch (err) {
+    console.log("Catch Split Flock: " + JSON.stringify(err.response.data));
+    return err.response.data;
+  }
+});
+
 // Add Birds
 
 export const addBirds = createAsyncThunk("coop/addBirds", async (body) => {

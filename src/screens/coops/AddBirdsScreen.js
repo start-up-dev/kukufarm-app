@@ -44,7 +44,7 @@ const AddBirdScreen = ({ route }) => {
   const dispatch = useDispatch();
 
   // Date Picker
-  const [selectedDate, setSelectedDate] = useState();
+  const [selectedDate, setSelectedDate] = useState(null);
   const [date, setDate] = useState();
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isPastDate, setIsPastDate] = useState();
@@ -102,9 +102,8 @@ const AddBirdScreen = ({ route }) => {
       costPerBird: inputs.cpd,
     };
 
-    if (date && inputs.numOfBirds > 0 && inputs.cpd > 0) {
+    if (inputs.numOfBirds > 0 && inputs.cpd > 0) {
       dispatch(addBirds(body));
-      dispatch(getFlock(data?.coop));
     } else {
       Alert.alert(
         "Empty Input",
@@ -116,8 +115,21 @@ const AddBirdScreen = ({ route }) => {
   };
 
   useEffect(() => {
+    if (selectedDate === null) {
+      const currentDate = new Date();
+      const options = { year: "numeric", month: "short", day: "numeric" };
+      const formattedDate = currentDate.toLocaleDateString("en-GB", options);
+      const day = String(currentDate.getDate()).padStart(2, "0");
+      const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+      const year = currentDate.getFullYear();
+      const serverFormat = `${day}-${month}-${year}`;
+
+      setSelectedDate(formattedDate);
+      setDate(serverFormat);
+    }
     if (res === "Bird added successfully") {
       dispatch(clearRes());
+      dispatch(getFlock(data?.coop));
       navigation.goBack();
     }
   }, [res]);

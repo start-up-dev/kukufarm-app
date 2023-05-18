@@ -7,17 +7,20 @@ import {
   TouchableOpacity,
   TextInput,
   Alert,
+  StatusBar,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { useNavigation } from "@react-navigation/native";
 
 import Space from "../../components/common/Space";
 import color from "../../const/color";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../components/common/Header";
 import { updateMe } from "../../api/auth";
 import Loader from "../../components/common/Loader";
+import { clearRes } from "../../store/authSlice";
+import { getMe } from "../../api/auth";
 
 const profileImg = require("../../../assets/images/profileImg1.jpg");
 
@@ -29,6 +32,7 @@ const EditProfileScreen = () => {
   const navigation = useNavigation();
 
   const userData = useSelector((state) => state.auth.userData);
+  const res = useSelector((state) => state.auth.res);
   const status = useSelector((state) => state.auth.status);
 
   const dispatch = useDispatch();
@@ -50,29 +54,55 @@ const EditProfileScreen = () => {
     }
   };
 
-  const onSave = () => {
-    const body = {
-      email: userData?.email,
-      firstName: firstName,
-      lastName: lastName,
-    };
+  // Create a new FormData object
+  const formData = new FormData();
+  // Add the file to the form data
+  formData.append("imageUpload", {
+    uri: image ? image : null,
+    name: "image.jpg",
+    type: "image/jpeg",
+  });
+  firstName ? formData.append("firstName", firstName) : null;
+  lastName ? formData.append("lastName", lastName) : null;
 
-    if (firstName && lastName) {
-      dispatch(updateMe(body));
-    } else {
-      Alert.alert(
-        "Empty Input",
-        "First Name or Last Name is missing",
-        [{ text: "OK" }],
-        {
-          cancelable: false,
-        }
-      );
-    }
+  const onSave = () => {
+    const body = image
+      ? formData
+      : {
+          email: userData?.email,
+          firstName: firstName ? firstName : userData.firstName,
+          lastName: lastName ? lastName : userData?.lastName,
+        };
+
+    dispatch(updateMe(body));
+
+    // if (body.firstName && body.lastName) {
+    //   dispatch(updateMe(body));
+    // } else {
+    //   Alert.alert(
+    //     "Empty Input",
+    //     "First Name or Last Name is missing",
+    //     [{ text: "OK" }],
+    //     {
+    //       cancelable: false,
+    //     }
+    //   );
+    // }
   };
+
+  useEffect(() => {
+    if (res === "User updated successfully") {
+      dispatch(clearRes());
+      dispatch(getMe());
+      navigation.navigate("Bottom Tab");
+    }
+  });
+
+  console.log(image);
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar />
       <Loader visible={status === "loading" ? true : false} />
       <View style={{ paddingHorizontal: 20 }}>
         <Space height={30} />
@@ -88,16 +118,16 @@ const EditProfileScreen = () => {
         <View style={styles.nameInputView}>
           <TextInput
             onChangeText={(text) => setFirstName(text)}
-            value={firstName}
-            placeholder="First Name"
+            defaultValue={userData?.firstName}
+            placeholder={userData?.firstName ? "" : "First Name"}
             style={styles.nameInput}
           />
         </View>
         <View style={styles.nameInputView}>
           <TextInput
             onChangeText={(text) => setLastName(text)}
-            value={lastName}
-            placeholder="Last Name"
+            defaultValue={userData?.lastName}
+            placeholder={userData?.lastName ? "" : "Last Name"}
             style={styles.nameInput}
           />
         </View>

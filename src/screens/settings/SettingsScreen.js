@@ -26,7 +26,11 @@ const SettingsScreen = () => {
       <StatusBar />
       <ScrollView style={{ paddingHorizontal: 20, height: height }}>
         <SingleMenu
-          title="John Appleseed"
+          title={
+            userData?.firstName
+              ? `${userData?.firstName} ${userData?.lastName}`
+              : "Add Name"
+          }
           subTitle={userData?.email}
           profile={userData?.picture ? { uri: userData?.picture } : profileImg}
           link="Profile"

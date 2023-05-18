@@ -49,7 +49,7 @@ const AddFlockScreen = ({ route }) => {
   });
 
   // Date Picker
-  const [selectedDate, setSelectedDate] = useState();
+  const [selectedDate, setSelectedDate] = useState(null);
   const [date, setDate] = useState();
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isPastDate, setIsPastDate] = useState();
@@ -146,6 +146,21 @@ const AddFlockScreen = ({ route }) => {
       );
     }
   }, [error]);
+
+  useEffect(() => {
+    if (selectedDate === null) {
+      const currentDate = new Date();
+      const options = { year: "numeric", month: "short", day: "numeric" };
+      const formattedDate = currentDate.toLocaleDateString("en-GB", options);
+      const day = String(currentDate.getDate()).padStart(2, "0");
+      const month = String(currentDate.getMonth() + 1).padStart(2, "0");
+      const year = currentDate.getFullYear();
+      const serverFormat = `${day}-${month}-${year}`;
+
+      setSelectedDate(formattedDate);
+      setDate(serverFormat);
+    }
+  }, [selectedDate]);
 
   const renderDropdown = () => {
     if (visible) {

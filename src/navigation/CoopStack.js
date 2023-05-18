@@ -8,6 +8,7 @@ import CoopsHeader from "../components/coops/CoopsHeader";
 import ArchivedScreen from "../screens/coops/ArchivedScreen";
 import SingleCoopScreen from "../screens/coops/SingleCoopScreen";
 import FlockDetailsScreen from "../screens/coops/FlockDetailsScreen";
+import { useSelector } from "react-redux";
 
 const Stack = createNativeStackNavigator();
 
@@ -40,7 +41,7 @@ const CoopStack = () => {
         name="Single Coop"
         component={SingleCoopScreen}
         options={{
-          header: () => <Header title="Coop 1" back deleted />,
+          header: () => <Header title="Coop 1" back empty />,
         }}
       />
       <Stack.Screen name="Flock Details" component={FlockDetailsScreen} />

@@ -46,7 +46,9 @@ const ProfileScreen = () => {
           style={styles.profileImg}
         />
         <Space height={30} />
-        <Text style={styles.name}>John Appleseed</Text>
+        <Text style={styles.name}>
+          {userData?.firstName} {userData?.lastName}
+        </Text>
         <Space height={8} />
         <Text style={styles.email}>{userData?.email}</Text>
         <Space height={"40%"} />

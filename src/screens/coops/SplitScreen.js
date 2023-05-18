@@ -1,36 +1,103 @@
-import { SafeAreaView, View, StatusBar, Text, StyleSheet } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  StatusBar,
+  Text,
+  StyleSheet,
+  Alert,
+} from "react-native";
 import BottomSheet from "../../components/common/BottomSheet";
 import color from "../../const/color";
 import Space from "../../components/common/Space";
 import Input from "../../components/common/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
+import Header from "../../components/common/Header";
+import { useDispatch, useSelector } from "react-redux";
+import { getFlock, splitFlock } from "../../api/coop";
+import Loader from "../../components/common/Loader";
+import { clearRes } from "../../store/coopSlice";
 
-const SplitScreen = () => {
-  const [inputs, setInputs] = useState({
-    layers: 250,
-    broiler: 250,
+const SplitScreen = ({ route }) => {
+  const { data } = route.params;
+
+  const navigation = useNavigation();
+
+  navigation.setOptions({
+    header: () => <Header title="Split flock" cancel save={onSave} />,
   });
+
+  const status = useSelector((state) => state.coop.status);
+  const res = useSelector((state) => state.coop.res);
+
+  const dispatch = useDispatch();
+
+  const [inputs, setInputs] = useState({
+    layers: "0",
+    broiler: "0",
+  });
+
+  const totalBirds = parseInt(inputs.layers) + parseInt(inputs.broiler);
 
   const handleOnchange = (text, input) => {
     setInputs((prevState) => ({ ...prevState, [input]: text }));
   };
 
+  function removeLastWord(string) {
+    var words = string.trim().split(" ");
+    if (words.length > 1) {
+      words.pop();
+      return words.join(" ");
+    } else {
+      return "";
+    }
+  }
+
+  const onSave = () => {
+    const body = {
+      id: data?._id,
+      data: {
+        layers: inputs.layers,
+        broilers: inputs.broiler,
+      },
+    };
+    if (totalBirds == data?.quantity) {
+      dispatch(splitFlock(body));
+    } else {
+      Alert.alert(
+        "Notice",
+        "Total birds must be equal to total birds",
+        [{ text: "OK" }],
+        { cancelable: false }
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (res === "Flock splitted successfully") {
+      dispatch(clearRes());
+      dispatch(getFlock(data?._id));
+      navigation.navigate("Coop");
+    }
+  });
+
   return (
     <SafeAreaView style={{ backgroundColor: color.background, flex: 1 }}>
       <StatusBar />
+      <Loader visible={status === "loading" ? true : false} />
       <View style={{ paddingHorizontal: 16 }}>
         <Space height={20} />
 
         <Text style={styles.title}>C1 Kienyeji 1 Layers</Text>
         <Space height={12} />
-        <Text style={styles.totalBirds}>500 birds</Text>
+        <Text style={styles.totalBirds}>{data?.quantity} birds</Text>
         <Space height={20} />
         <Text style={styles.birdTitle}>Layers</Text>
         <Space height={12} />
         <Input
           label={"Number of birds"}
           onChangeText={(text) => handleOnchange(text, "layers")}
-          value={inputs.layers}
+          placeholder={`${data?.quantity / 2}`}
           type="number-pad"
         />
         <Space height={20} />
@@ -39,7 +106,7 @@ const SplitScreen = () => {
         <Input
           label={"Number of birds"}
           onChangeText={(text) => handleOnchange(text, "broiler")}
-          value={inputs.broiler}
+          placeholder={`${data?.quantity / 2}`}
           type="number-pad"
         />
         <Space height={12} />
@@ -49,8 +116,8 @@ const SplitScreen = () => {
         </Text>
       </View>
       <BottomSheet
-        title1={"C1 Kienyeji 1 Layers • 250"}
-        title2={"C1 Kienyeji 1 Broilers • 250"}
+        title1={`${removeLastWord(data?.name)} Layers • ${inputs.layers}`}
+        title2={`${removeLastWord(data?.name)} Broilers • ${inputs.broiler}`}
       />
     </SafeAreaView>
   );

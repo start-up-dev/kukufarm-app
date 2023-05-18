@@ -35,9 +35,7 @@ const SingleMenu = ({ title, subTitle, unit, profile, right, leave, link }) => {
         alignItems: "center",
         marginVertical: 12,
       }}
-      onPress={
-        link ? () => navigation.navigate(link) : console.log("No Link Found")
-      }
+      onPress={link ? () => navigation.navigate(link) : null}
     >
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         {profile && (
@@ -65,17 +63,19 @@ const SingleMenu = ({ title, subTitle, unit, profile, right, leave, link }) => {
           >
             {title}
           </Text>
-          <Text
-            style={{
-              fontFamily: "Sora-Regular",
-              fontSize: 12,
-              lineHeight: 20,
-              letterSpacing: 0.4,
-              color: "#595959",
-            }}
-          >
-            {subTitle}
-          </Text>
+          {subTitle && (
+            <Text
+              style={{
+                fontFamily: "Sora-Regular",
+                fontSize: 12,
+                lineHeight: 20,
+                letterSpacing: 0.4,
+                color: "#595959",
+              }}
+            >
+              {subTitle}
+            </Text>
+          )}
         </View>
       </View>
       <View style={{ flexDirection: "row", alignItems: "center" }}>

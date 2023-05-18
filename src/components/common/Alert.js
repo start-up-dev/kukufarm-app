@@ -12,7 +12,6 @@ import Button from "./Button";
 import Space from "./Space";
 
 const MyAlert = (props) => {
-  console.log("hi");
   return (
     <Modal
       animationType="fade"
