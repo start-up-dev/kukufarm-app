@@ -1,6 +1,7 @@
 import {
   Dimensions,
   Image,
+  Platform,
   SafeAreaView,
   ScrollView,
   StyleSheet,
@@ -11,7 +12,6 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { useNavigation } from "@react-navigation/native";
 
 import TabBar from "../../components/records/TabBar";
-import RecordBox from "../../components/records/RecordBox";
 import RecordBoxHeader from "../../components/records/RecordBoxHeader";
 import Space from "../../components/common/Space";
 import { View } from "react-native";
@@ -82,7 +82,6 @@ const RecordDetailsScreen = () => {
         closeOnPressMask={false}
         height={354}
         customStyles={{
-          draggableIcon: {},
           container: {
             borderRadius: 7,
           },
@@ -117,18 +116,20 @@ const RecordDetailsScreen = () => {
             </TouchableOpacity>
           </View>
           <Space height={30} />
-          <TouchableOpacity onPress={expenseHandle}>
-            <Text style={styles.menuText}>Expense</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={expenseHandle}>
-            <Text style={styles.menuText}>Sale</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={expenseHandle}>
-            <Text style={styles.menuText}>Eggs collected</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={expenseHandle}>
-            <Text style={styles.menuText}>Birds removed</Text>
-          </TouchableOpacity>
+          <View>
+            <TouchableOpacity onPress={expenseHandle}>
+              <Text style={styles.menuText}>Expense</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={expenseHandle}>
+              <Text style={styles.menuText}>Sale</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={expenseHandle}>
+              <Text style={styles.menuText}>Eggs collected</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={expenseHandle}>
+              <Text style={styles.menuText}>Birds removed</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </RBSheet>
     </SafeAreaView>

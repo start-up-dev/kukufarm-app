@@ -31,7 +31,7 @@ const RecordBoxHeader = ({ tabNum }) => {
           borderWidth: 1,
         }}
       >
-        <View style={{ alignItems: "flex-end" }}>
+        <View style={{ alignItems: "center ", justifyContent: "center" }}>
           <Text
             style={{
               fontFamily: "Sora-SemiBold",

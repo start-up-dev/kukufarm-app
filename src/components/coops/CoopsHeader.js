@@ -92,7 +92,23 @@ const CoopsHeader = () => {
               </View>
             </TouchableOpacity>
           ) : (
-            <View></View>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Farm User")}
+              style={{ flexDirection: "row" }}
+            >
+              <Image
+                source={
+                  userData?.picture ? { uri: userData?.picture } : profileImg1
+                }
+                style={{
+                  borderRadius: 100,
+                  width: 32,
+                  height: 32,
+                  borderWidth: 2,
+                  borderColor: "#FCFCFC",
+                }}
+              />
+            </TouchableOpacity>
           )}
 
           <TouchableOpacity

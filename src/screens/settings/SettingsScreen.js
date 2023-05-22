@@ -32,7 +32,7 @@ const SettingsScreen = () => {
               : "Add Name"
           }
           subTitle={userData?.email}
-          profile={userData?.picture ? { uri: userData?.picture } : profileImg}
+          profile={userData?.picture}
           link="Profile"
         />
         <SingleMenu

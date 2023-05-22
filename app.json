@@ -2,7 +2,7 @@
   "expo": {
     "name": "kukufarm-app",
     "slug": "kukufarm-app",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/images/192x.png",
     "userInterfaceStyle": "automatic",
@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.makereal.kukufarm"
@@ -30,9 +28,7 @@
       "favicon": "./assets/images/192x.png"
     },
     "schema": "kukufarm",
-    "plugins": [
-      "expo-apple-authentication"
-    ],
+    "plugins": ["expo-apple-authentication"],
     "extra": {
       "eas": {
         "projectId": "e5368a8a-f769-429c-b154-e6485bcd4637"

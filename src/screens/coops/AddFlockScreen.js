@@ -29,8 +29,8 @@ const AddFlockScreen = ({ route }) => {
   const [inputs, setInputs] = useState({
     breed_name: "",
     type: "Layers",
-    numOfBirds: "0",
-    cpd: "0.00",
+    numOfBirds: 0,
+    cpd: 0,
   });
   const [visible, setVisible] = useState(false);
 
@@ -248,11 +248,16 @@ const AddFlockScreen = ({ route }) => {
           label="Number of birds"
           value={inputs.numOfBirds}
           onChangeText={(text) => handleOnchange(text, "numOfBirds")}
+          type={"number-pad"}
+          placeholder={"0"}
         />
         <Input
           label="Cost per bird (KSH)"
           value={inputs.cpd}
           onChangeText={(text) => handleOnchange(text, "cpd")}
+          type={"decimal-pad"}
+          placeholder={"0.00"}
+          focus={true}
         />
         <Space height={10} />
         <Text

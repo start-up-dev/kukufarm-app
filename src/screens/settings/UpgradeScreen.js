@@ -38,7 +38,7 @@ const UpgradeScreen = () => {
         <View style={styles.view}>
           <View style={{ flexDirection: "row", justifyContent: "center" }}>
             <View style={styles.bestSellar}>
-              <Text style={styles.currentPlan}>Best Sellar</Text>
+              <Text style={styles.currentPlan}>Best Selle r</Text>
             </View>
           </View>
 

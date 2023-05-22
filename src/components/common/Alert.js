@@ -15,21 +15,28 @@ const MyAlert = (props) => {
   return (
     <Modal
       animationType="fade"
-      transparent={true}
       visible={props.modalVisible}
+      transparent={true}
       onRequestClose={() => {
         props.setModalVisible(false);
       }}
     >
-      <SafeAreaView style={{ justifyContent: "center", alignItems: "center" }}>
-        <Space height={200} />
+      <SafeAreaView
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
+          flex: 1,
+        }}
+      >
         <View style={styles.centered}>
           <Text style={styles.title}>Email not found</Text>
+          <Space height={16} />
           <Text style={styles.description}>
             The email you entered is not registered with Kuku farm. Verify the
             email and try again.
           </Text>
-          <Space height={20} />
+          <Space height={24} />
           <Button
             title="Okay"
             fill
@@ -45,9 +52,8 @@ const MyAlert = (props) => {
 const styles = StyleSheet.create({
   centered: {
     width: "80%",
-    height: "40%",
     borderRadius: 7,
-    padding: 20,
+    padding: 30,
     backgroundColor: color.background,
     shadowColor: "#000",
     shadowOffset: { width: 1, height: 1 },

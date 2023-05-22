@@ -51,10 +51,7 @@ const Header = ({
         >
           {back && (
             <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Image
-                source={left}
-                style={{ width: 7.5, height: 15, resizeMode: "contain" }}
-              />
+              <Icon icon={left} />
             </TouchableOpacity>
           )}
 
@@ -127,7 +124,7 @@ const Header = ({
 
           {dot && <PopUp id={dot} />}
 
-          {empty && <View></View>}
+          {empty && <View style={back ? { width: 15 } : { width: 45 }}></View>}
         </View>
       </View>
     </SafeAreaView>

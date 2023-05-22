@@ -74,7 +74,7 @@ const AddPeopleSreen = () => {
             textAlign: "center",
           }}
         >
-          Total cost will be logged as an expense
+          Add co-owners or workers to your farm
         </Text>
         <Space height={16} />
         <Text

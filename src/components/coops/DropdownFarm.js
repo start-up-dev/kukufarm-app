@@ -105,7 +105,7 @@ const DropdownFarm = ({ myFarm, data }) => {
               color: color.TextPrimary,
             }}
           >
-            John's
+            {data?.firstName}'s
           </Text>
           <Text
             style={{

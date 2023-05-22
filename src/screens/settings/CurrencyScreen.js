@@ -24,7 +24,7 @@ const CurrencyScreen = () => {
         <StatusBar />
         {allCountry.map((i) => (
           <TouchableOpacity
-            key={Math.random(100000000000)}
+            key={i.countryName}
             style={{
               marginVertical: 12,
               flexDirection: "row",
@@ -45,6 +45,7 @@ const CurrencyScreen = () => {
                   lineHeight: 24,
                   letterSpacing: 0.25,
                   color: color.TextPrimary,
+                  width: 50,
                 }}
               >
                 {i.currency}

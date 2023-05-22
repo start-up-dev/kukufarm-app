@@ -22,7 +22,11 @@ const TabBar = ({ tabNum, setTabNum }) => {
           style={{ alignItems: "center" }}
           onPress={() => setTabNum(1)}
         >
-          <Text style={[styles.title, { color: color.TextLink }]}>Birds</Text>
+          <Text
+            style={[styles.title, tabNum === 1 && { color: color.TextLink }]}
+          >
+            Birds
+          </Text>
           {tabNum === 1 && (
             <View
               style={{
@@ -39,7 +43,11 @@ const TabBar = ({ tabNum, setTabNum }) => {
           style={{ alignItems: "center" }}
           onPress={() => setTabNum(2)}
         >
-          <Text style={styles.title}>Finances</Text>
+          <Text
+            style={[styles.title, tabNum === 2 && { color: color.TextLink }]}
+          >
+            Finances
+          </Text>
           {tabNum === 2 && (
             <View
               style={{
@@ -56,7 +64,11 @@ const TabBar = ({ tabNum, setTabNum }) => {
           style={{ alignItems: "center" }}
           onPress={() => setTabNum(3)}
         >
-          <Text style={styles.title}>Eggs</Text>
+          <Text
+            style={[styles.title, tabNum === 3 && { color: color.TextLink }]}
+          >
+            Eggs
+          </Text>
           {tabNum === 3 && (
             <View
               style={{

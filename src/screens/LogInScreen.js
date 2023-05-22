@@ -7,6 +7,7 @@ import {
   StatusBar,
   View,
   ScrollView,
+  Platform,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -112,11 +113,19 @@ const LogInScreen = () => {
         <Text style={styles.title}>Kuku farm</Text>
         <Text style={styles.subTitle}>Flock management and record keeping</Text>
         <Space height={150} />
-        <TouchableOpacity style={styles.logInBox} onPress={() => appleLogin()}>
-          <Image source={apple} style={styles.appleIcon} />
-          <Text style={styles.logInText}>Continue with Apple</Text>
-        </TouchableOpacity>
+
+        {Platform.OS === "ios" && (
+          <TouchableOpacity
+            style={styles.logInBox}
+            onPress={() => appleLogin()}
+          >
+            <Image source={apple} style={styles.appleIcon} />
+            <Text style={styles.logInText}>Continue with Apple</Text>
+          </TouchableOpacity>
+        )}
+
         <Space height={20} />
+
         <TouchableOpacity
           style={styles.logInBox}
           disabled={!request}
@@ -127,6 +136,7 @@ const LogInScreen = () => {
           <Image source={google} style={styles.googleIcon} />
           <Text style={styles.logInText}>Continue with Google</Text>
         </TouchableOpacity>
+
         <Space height={250} />
         <Text style={styles.bottomText}>
           By continuing, you agree to Kuku farm’s{" "}

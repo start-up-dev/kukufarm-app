@@ -13,6 +13,7 @@ import { useSelector } from "react-redux";
 const Stack = createNativeStackNavigator();
 
 const CoopStack = () => {
+  const userData = useSelector((state) => state.auth.userData);
   return (
     <Stack.Navigator
       initialRouteName="Coop"
@@ -27,7 +28,9 @@ const CoopStack = () => {
         name="Farm User"
         component={FarmUser}
         options={{
-          header: () => <Header title="John's Farm" back empty />,
+          header: () => (
+            <Header title={`${userData?.firstName}'s Farm`} back empty />
+          ),
         }}
       />
       <Stack.Screen

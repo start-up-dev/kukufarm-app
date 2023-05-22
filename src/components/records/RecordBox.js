@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     color: "#1F1F1F",
   },
   separetor: {
-    width: 200,
+    width: 150,
     height: 2,
     backgroundColor: "#F3F5F9",
     marginRight: 4,

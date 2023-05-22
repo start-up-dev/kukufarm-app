@@ -7,21 +7,21 @@ import {
 } from "react-native";
 import color from "../../const/color";
 import SingleMenu from "../../components/settings/SingleMenu";
+import { useSelector } from "react-redux";
 
 const { width, height } = Dimensions.get("window");
 
 const FarmUser = () => {
+  const userData = useSelector((state) => state.auth.userData);
   return (
     <SafeAreaView style={{ backgroundColor: color.background }}>
       <StatusBar />
       <ScrollView style={{ paddingHorizontal: 20, height: height }}>
-        <SingleMenu title="John Appleseed" subTitle="Owner" profile right />
         <SingleMenu
-          title="John Appleseed"
-          subTitle="Can view and enter records"
-          profile
+          title={`${userData?.firstName}'s Farm`}
+          subTitle="Owner"
+          profile={userData?.picture}
           right
-          leave
         />
       </ScrollView>
     </SafeAreaView>

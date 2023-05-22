@@ -4,11 +4,12 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
+  Pressable,
 } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import color from "../../const/color";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Icon from "./Icon";
 
 const dropdownIcon = require("../../../assets/images/dropdownMedium.png");
@@ -25,9 +26,15 @@ const Input = ({
   dpCancel,
   dpHandler,
   selectedDate,
+  focus,
 }) => {
+  const ref = useRef();
+
   return (
-    <View style={[styles.container, d && { paddingVertical: 4 }]}>
+    <Pressable
+      onPress={() => (d ? null : ref.current.focus())}
+      style={[styles.container, d && { paddingVertical: 4 }]}
+    >
       {label && (
         <Text
           style={{
@@ -58,6 +65,7 @@ const Input = ({
       ) : (
         <TextInput
           onChangeText={onChangeText}
+          ref={ref}
           placeholder={placeholder}
           style={{
             fontFamily: "Sora-Regular",
@@ -70,7 +78,7 @@ const Input = ({
           defaultValue={value}
         />
       )}
-    </View>
+    </Pressable>
   );
 };
 
