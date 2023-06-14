@@ -1,62 +1,59 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import emergency_b from 'assets/images/tabs/emergency_b.png';
-import emergency_w from 'assets/images/tabs/emergency_w.png';
-import status_b from 'assets/images/tabs/status_b.png';
-import status_w from 'assets/images/tabs/status_w.png';
-import check_b from 'assets/images/tabs/check_b.png';
-import check_w from 'assets/images/tabs/check_w.png';
-import calender_b from 'assets/images/tabs/calender_b.png';
-import calender_w from 'assets/images/tabs/calender_w.png';
-import profile_b from 'assets/images/tabs/profile_b.png';
-import profile_w from 'assets/images/tabs/profile_w.png';
+// import emergency_b from 'assets/images/tabs/emergency_b.png';
+// import emergency_w from 'assets/images/tabs/emergency_w.png';
+// import status_b from 'assets/images/tabs/status_b.png';
+// import status_w from 'assets/images/tabs/status_w.png';
+// import check_b from 'assets/images/tabs/check_b.png';
+// import check_w from 'assets/images/tabs/check_w.png';
+// import calender_b from 'assets/images/tabs/calender_b.png';
+// import calender_w from 'assets/images/tabs/calender_w.png';
+// import profile_b from 'assets/images/tabs/profile_b.png';
+// import profile_w from 'assets/images/tabs/profile_w.png';
+
+import coops from 'assets/images/coops.png';
+import coopsActive from 'assets/images/coopsActive.png';
+import records from 'assets/images/records.png';
+import recordsActive from 'assets/images/recordsActive.png';
+import settings from 'assets/images/settings.png';
+import settingsActive from 'assets/images/settingsActive.png';
 
 import {theme} from 'styles/theme';
-import Emergency from './Emergency';
-import Status from './Status';
-import CheckIn from './Checkin';
-import Calender from './Calender';
-import Profile from './Profile';
+import Coops from './Coops';
+import Records from './Records';
+import Settings from './Settings';
 import Image from 'components/Image';
+import color from 'constants/color';
 
 // import AccountStack from './Account';
 
 const ICON_SIZE = 30;
 
 const PAGE_ICON_MAP = {
-  Emergency: (focused: boolean) => (
+  Coops: (focused: boolean) => (
+    <Image style={{width: ICON_SIZE}} source={focused ? coops : coopsActive} />
+  ),
+  Records: (focused: boolean) => (
     <Image
       style={{width: ICON_SIZE}}
-      source={focused ? emergency_w : emergency_b}
+      source={focused ? records : recordsActive}
     />
   ),
-  Status: (focused: boolean) => (
-    <Image style={{width: ICON_SIZE}} source={focused ? status_w : status_b} />
-  ),
-  CheckIn: (focused: boolean) => (
-    <Image style={{width: ICON_SIZE}} source={focused ? check_w : check_b} />
-  ),
-  Calender: (focused: boolean) => (
+
+  Settings: (focused: boolean) => (
     <Image
       style={{width: ICON_SIZE}}
-      source={focused ? calender_w : calender_b}
-    />
-  ),
-  Profile: (focused: boolean) => (
-    <Image
-      style={{width: ICON_SIZE}}
-      source={focused ? profile_w : profile_b}
+      source={focused ? settings : settingsActive}
     />
   ),
 };
 
 export type HomeStackParamList = {
-  Emergency: undefined;
-  Status: undefined;
-  CheckIn: undefined;
-  Calender: undefined;
-  Profile: undefined;
+  Coops: undefined;
+  Records: undefined;
+
+  Settings: undefined;
 };
 
 const Tab = createBottomTabNavigator<HomeStackParamList>();
@@ -64,56 +61,51 @@ const Tab = createBottomTabNavigator<HomeStackParamList>();
 function MainStack() {
   return (
     <Tab.Navigator
-      initialRouteName={'CheckIn'}
+      initialRouteName={'Coops'}
       screenOptions={({route, navigation}) => ({
         tabBarIcon: ({focused, color, size}) => {
           return PAGE_ICON_MAP[route.name](focused);
         },
-        tabBarLabelStyle: {
-          fontSize: 13,
-          fontWeight: '600',
-          paddingBottom: 5,
-        },
 
-        tabBarActiveBackgroundColor: theme.colors.primary,
-        headerShown: false,
-        tabBarActiveTintColor: theme.colors.white,
-        tabBarStyle: {
-          position: 'absolute',
-          elevation: 10,
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
-          height: theme.size.tabBarHeight,
-          // marginTop: 10,
-          // paddingTop: 15,
-          // paddingBottom: 15,
-          // paddingHorizontal: 20,
+        tabBarActiveTintColor: color.TextLink,
+        tabBarInactiveTintColor: '#6F6F78',
+        tabBarLabelStyle: {
+          fontSize: 10,
+          fontFamily: 'Sora-SemiBold',
         },
+        // tabBarLabelStyle: {
+        //   fontSize: 13,
+        //   fontWeight: '600',
+        //   paddingBottom: 5,
+        // },
+
+        // tabBarActiveBackgroundColor: theme.colors.primary,
+        // headerShown: false,
+        // tabBarActiveTintColor: theme.colors.white,
+        // tabBarStyle: {
+        //   position: 'absolute',
+        //   elevation: 10,
+        //   borderTopLeftRadius: 20,
+        //   borderTopRightRadius: 20,
+        //   height: theme.size.tabBarHeight,
+        // },
+        headerShown: false,
       })}>
       <Tab.Screen
-        options={{tabBarLabel: 'Emergency'}}
-        name={'Emergency'}
-        component={Emergency}
+        options={{tabBarLabel: 'Coops'}}
+        name={'Coops'}
+        component={Coops}
       />
       <Tab.Screen
-        options={{tabBarLabel: 'Status'}}
-        name={'Status'}
-        component={Status}
+        options={{tabBarLabel: 'Records'}}
+        name={'Records'}
+        component={Records}
       />
+
       <Tab.Screen
-        options={{tabBarLabel: 'CheckIn'}}
-        name={'CheckIn'}
-        component={CheckIn}
-      />
-      <Tab.Screen
-        options={{tabBarLabel: 'Calender'}}
-        name={'Calender'}
-        component={Calender}
-      />
-      <Tab.Screen
-        options={{tabBarLabel: 'Profile'}}
-        name={'Profile'}
-        component={Profile}
+        options={{tabBarLabel: 'Settings'}}
+        name={'Settings'}
+        component={Settings}
       />
     </Tab.Navigator>
   );

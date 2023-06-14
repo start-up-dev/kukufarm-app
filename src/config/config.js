@@ -73,4 +73,4 @@ export const TUTORIAL = {
 
 export const TOAST_DURATION_TUTORIAL = 4000;
 
-export const PACKAGE_NAME = 'co.justcheckingin';
+export const PACKAGE_NAME = 'com.makereal.kukufarm';

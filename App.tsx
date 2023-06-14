@@ -25,7 +25,11 @@ import linking from 'utils/linking';
 
 GoogleSignin.configure({
   webClientId:
-    '459641506881-0no5sq15ru8b7c3cr4c31lc8t4v51upa.apps.googleusercontent.com',
+    '693246696932-giabagvkjh0o9tv9eq9eelomr6o52ge2.apps.googleusercontent.com',
+  iosClientId:
+    '693246696932-q9c3lcph74l2jgi9hj3frp38hb9ji7os.apps.googleusercontent.com',
+
+  offlineAccess: true,
 });
 
 const App = () => {
@@ -68,17 +72,17 @@ const App = () => {
   return (
     <SafeAreaProvider>
       {/* <GestureHandlerRootView style={{flex: 1}}> */}
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <RootLoader />
-            <BottomSheetModalProvider>
-              <NavigationContainer ref={navigationRef} linking={linking}>
-                <RootNavigation />
-              </NavigationContainer>
-            </BottomSheetModalProvider>
-            <AlertInitializer />
-          </PersistGate>
-        </Provider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <RootLoader />
+          <BottomSheetModalProvider>
+            <NavigationContainer ref={navigationRef} linking={linking}>
+              <RootNavigation />
+            </NavigationContainer>
+          </BottomSheetModalProvider>
+          <AlertInitializer />
+        </PersistGate>
+      </Provider>
       {/* </GestureHandlerRootView> */}
     </SafeAreaProvider>
   );

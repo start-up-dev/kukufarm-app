@@ -1,7 +1,7 @@
 // export const BASE_URL = 'http://192.168.0.111:9000/api/';
 // export const SOCKET_ENDPOINT = 'http://192.168.1.101:9900';
 
-export const BASE = 'https://jci.makereal.click';
+export const BASE = 'http://192.168.0.108:5001';
 // export const BASE = 'https://heart-live-api-v2.makereal.click';
 
 // export const BASE = 'http://192.168.1.101:5000';

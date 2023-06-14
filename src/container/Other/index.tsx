@@ -1,77 +1,92 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Header from 'components/common/Header';
 
-import UpdateName from './UpdateName';
-import UpdatePhone from './UpdatePhone';
-import Subscription from './Subscription';
-import SetProfileImage from './SetProfileImage';
-import PhoneOtpVerify from './PhoneOtpVerify';
-import ManuallyAddContact from './ManuallyAddContact';
-import Contacts from './Contacts';
-import TrackList from './TrackList';
-import AccountDelete from './AccountDelete';
+import ProfileScreen from './ProfileScreen';
+import EditProfileScreen from './EditProfileScreen';
+import AddFlockScreen from './AddFlockScreen';
+import AddPeopleScreen from './AddPeopleScreen';
+import UpgradeScreen from './UpgradeScreen';
+import EggsTrayScreen from './EggsTrayScreen';
+import CurrencyScreen from './CurrencyScreen';
+import SplitScreen from './SplitScreen';
+import AddBirdsScreen from './AddBirdsScreen';
+import RemoveBirdScreen from './RemoveBirdScreen';
+import AddExpenseScreen from './AddExpenseScreen';
 
 export type OtherStackParamList = {
-  UpdateName: {isFromSignUp?: boolean};
-  UpdatePhone: {isFromSignUp?: boolean};
-  Subscription: {isTutorialStep?: boolean};
-  SetProfileImage: {isFromSignUp?: boolean};
-  PhoneOtpVerify: {phone: string; isFromSignUp?: boolean};
-  ManuallyAddContact: {circleId: string};
-  Contacts: {circleId: string};
-  TrackList: {trackId: string};
-  AccountDelete: undefined;
+  Profile: undefined;
+  EditProfile: undefined;
+  AddFlock: undefined;
+  AddPeople: undefined;
+  Upgrade: undefined;
+  EggsTray: undefined;
+  Currency: undefined;
+  Split: undefined;
+  AddBird: undefined;
+  RemoveBird: undefined;
+  AddExpense: undefined;
 };
 
 const Stack = createNativeStackNavigator<OtherStackParamList>();
 
 const AuthNavigation = () => {
   return (
-    <Stack.Navigator initialRouteName="UpdateName">
+    <Stack.Navigator initialRouteName="Profile">
       <Stack.Screen
-        name="UpdateName"
-        component={UpdateName}
-        options={{headerShown: false}}
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          header: () => <Header title="Profile" back edit />,
+        }}
       />
       <Stack.Screen
-        name="UpdatePhone"
-        component={UpdatePhone}
-        options={{headerShown: false}}
+        name="EditProfile"
+        component={EditProfileScreen}
+        // options={{headerShown: false}}
       />
       <Stack.Screen
-        name="Subscription"
-        component={Subscription}
-        options={{headerShown: false}}
+        name="AddFlock"
+        component={AddFlockScreen}
+        // options={{headerShown: false}}
       />
       <Stack.Screen
-        name="SetProfileImage"
-        component={SetProfileImage}
-        options={{headerShown: false}}
+        name="AddPeople"
+        component={AddPeopleScreen}
+        options={{
+          header: () => <Header title="Add People" cancel empty />,
+        }}
       />
       <Stack.Screen
-        name="PhoneOtpVerify"
-        component={PhoneOtpVerify}
-        options={{headerShown: false}}
+        name="Upgrade"
+        component={UpgradeScreen}
+        options={{
+          header: () => <Header title="Upgrade" back empty />,
+        }}
       />
       <Stack.Screen
-        name="ManuallyAddContact"
-        component={ManuallyAddContact}
-        options={{headerShown: false}}
+        name="EggsTray"
+        component={EggsTrayScreen}
+        options={{
+          header: () => <Header title="Eggs per tray" cancel save />,
+        }}
       />
       <Stack.Screen
-        name="Contacts"
-        component={Contacts}
-        options={{headerShown: false}}
+        name="Currency"
+        component={CurrencyScreen}
+        options={{
+          header: () => <Header title="Default currency" cancel save />,
+        }}
       />
+      <Stack.Screen name="Split" component={SplitScreen} />
+      <Stack.Screen name="AddBird" component={AddBirdsScreen} />
+      <Stack.Screen name="RemoveBird" component={RemoveBirdScreen} />
       <Stack.Screen
-        name="TrackList"
-        component={TrackList}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="AccountDelete"
-        component={AccountDelete}
-        options={{headerShown: false}}
+        name="AddExpense"
+        component={AddExpenseScreen}
+        options={{
+          header: () => <Header title="Add Expense" cancel save />,
+        }}
       />
     </Stack.Navigator>
   );

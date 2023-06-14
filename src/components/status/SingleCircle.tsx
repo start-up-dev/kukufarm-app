@@ -8,7 +8,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {theme} from 'styles/theme';
 import {ICircleMember, IMyCircle} from 'interfaces/ICircle';
 import {remove_member_in_circle} from 'api/circle';
-import {removeEmergenciesContact} from 'store/reducers/emergencies';
+import {removeEmergenciesContact} from 'store/reducers/coops';
 import {useCustomDispatch} from 'store';
 import {showAlert} from 'utils/toast';
 import ActivityInd from 'components/ActivityIndicator';

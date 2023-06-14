@@ -1,20 +1,21 @@
 export interface IUser {
   _id: string;
-  avatar: string;
-  name: string;
-  config: IConfig;
   email: string;
-  isEmailVerified: boolean;
-  isPhoneVerified: boolean;
-  isPurchased: boolean;
-  lastNotifyStep: number;
-  phoneNumber: string;
-  checkInTime: number;
-  lastCheckInTime: number;
-  lastNotifyTime: number;
-  lastStatus: number;
-  checkInStack: number;
-  point: number;
+  firstName: string;
+  lastName: string;
+  userName: string;
+  picture: string;
+  appleId: string;
+  role: string;
+  currency: string;
+  plan: string;
+  eggsPerTray: number;
+  flocks: any[];
+  coWorkers: any[];
+  createdAt: string;
+  updatedAt: string;
+
+  coops: string[];
 }
 
 export interface IConfig {

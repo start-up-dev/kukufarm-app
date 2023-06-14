@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>708934845319-f7hi168fe2dlgvg2gi537crrsk1tt5j7.apps.googleusercontent.com</string>
+	<string>693246696932-5ads0u92taimo6lcpero0a9oepmmo393.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.708934845319-f7hi168fe2dlgvg2gi537crrsk1tt5j7</string>
+	<string>com.googleusercontent.apps.693246696932-5ads0u92taimo6lcpero0a9oepmmo393</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>708934845319-ogd1bldg998goi85mnhftu9tq76dndsn.apps.googleusercontent.com</string>
+	<string>693246696932-s8tgtc2bqb60k8tm4ihs3vrs9cod4mqh.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA9Wx-vxutzCSWNtjT4CWeHUB5PqUyYgBQ</string>
+	<string>AIzaSyCwcodJCJ18T1LBxE0WymtQdnKL_QPg0OQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>708934845319</string>
+	<string>693246696932</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>co.justcheckingin.app</string>
+	<string>com.makereal.kukufarm</string>
 	<key>PROJECT_ID</key>
-	<string>just-checking-in-bitrupt</string>
+	<string>kukufarm</string>
 	<key>STORAGE_BUCKET</key>
-	<string>just-checking-in-bitrupt.appspot.com</string>
+	<string>kukufarm.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,8 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:708934845319:ios:2d8feef863b0785f908922</string>
-	<key>DATABASE_URL</key>
-	<string>https://just-checking-in-bitrupt.firebaseio.com</string>
+	<string>1:693246696932:ios:48f1a38e831e002b193bf1</string>
 </dict>
 </plist>

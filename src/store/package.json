@@ -1,3 +1,6 @@
 {
-    "name":"store"
+    "name": "store",
+    "devDependencies": {
+        "@types/lodash": "^4.14.195"
+    }
 }

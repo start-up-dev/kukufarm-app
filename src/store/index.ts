@@ -3,8 +3,7 @@ import {persistReducer, persistStore} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from './reducers/auth';
 import global from './reducers/global';
-import tutorial from './reducers/tutorial';
-import emergencies from './reducers/emergencies';
+import coops from './reducers/coops';
 import circles from './reducers/circles';
 import myCircles from './reducers/myCircles';
 import trackList from './reducers/trackList';
@@ -15,14 +14,13 @@ const persistConfig = {
   key: 'root',
   version: 1,
   storage: AsyncStorage,
-  whitelist: ['auth', 'config', 'tutorial'],
+  whitelist: ['auth', 'config'],
 };
 
 const rootReducer = combineReducers({
   auth,
   global,
-  tutorial,
-  emergencies,
+  coops,
   circles,
   myCircles,
   trackList,
