@@ -7,14 +7,13 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  View,
 } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import {useNavigation} from '@react-navigation/native';
 
 import TabBar from 'components/records/TabBar';
 import RecordBoxHeader from 'components/records/RecordBoxHeader';
 import Space from 'components/common/Space';
-import {View} from 'react-native';
 import Icon from 'components/common/Icon';
 import color from 'constants/color';
 import {useRef, useState} from 'react';
@@ -88,6 +87,7 @@ const RecordDetailsScreen = () => {
           style={{
             paddingHorizontal: 30,
             paddingVertical: 16,
+            flex: 1,
           }}>
           <View
             style={{

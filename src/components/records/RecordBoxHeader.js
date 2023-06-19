@@ -29,7 +29,7 @@ const RecordBoxHeader = ({tabNum}) => {
           borderColor: 'transparent',
           borderWidth: 1,
         }}>
-        <View style={{alignItems: 'center ', justifyContent: 'center'}}>
+        <View style={{justifyContent: 'center'}}>
           <Text
             style={{
               fontFamily: 'Sora-SemiBold',
@@ -37,6 +37,7 @@ const RecordBoxHeader = ({tabNum}) => {
               lineHeight: 12,
               letterSpacing: 1.2,
               color: '#454545',
+              textAlign: 'center',
             }}>
             2023
           </Text>
